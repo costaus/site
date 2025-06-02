@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claro - Planos Incríveis para Você!</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" type="image/svg+<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1363843934716910');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1363843934716910');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
+    /></noscript>
     <style>
         body {
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -75,17 +74,23 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
             margin-top: 4px; /* Espaçamento do texto principal da notificação */
             display: inline-block; /* Para que o padding funcione bem */
         }
+        .footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            fill: currentColor; /* Para que o ícone SVG herde a cor do texto */
+        }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col min-h-screen">
 
     <header class="claro-red py-6 shadow-lg">
         <div class="container mx-auto px-4 flex justify-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" alt="Claro Logo" class="h-14 md:h-20">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" alt="Claro Logo" class="h-16 md:h-24">
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 md:py-12">
+    <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
         <section id="planos-moveis" class="mb-12">
             <h1 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Planos Móveis Claro</h1>
             <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Escolha o plano perfeito para você e navegue com a velocidade e qualidade que só a Claro oferece!</p>
@@ -133,10 +138,10 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
                         <li>Fibra Ótica de Ultravelocidade</li>
                         <li>Fone Fixo Ilimitado Brasil</li>
                     </ul>
-                    <p class="bonus-text font-bold text-xl mb-1">+ 30GB de Bônus no seu Celular Claro!</p>
+                    <p class="bonus-text font-bold text-xl mb-1 text-center w-full">+ 30GB de Bônus no seu Celular Claro!</p>
                     <p class="text-gray-800 font-bold text-3xl md:text-4xl my-4">R$ 119,00<span class="text-base font-normal text-gray-600">/mês</span></p>
                     <p class="text-xs text-gray-500 mb-6 text-center">(Preço pode variar conforme localidade e promoções vigentes)</p>
-                    <a href="https://wa.me/5535984465948?text=Oi%21%20Quero%20contratar%20a%20Claro%20Internet%20Fixa%20com%20600%20Megas%20por%20R%24119%2Fm%C3%AAs.%20Vi%20que%20ainda%20tem%2030%20GB%20de%20b%C3%B4nus%20para%20celular.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center">
+                    <a href="https://wa.me/5535984465948?text=Oi%21%20Quero%20contratar%20a%20Claro%20Internet%20Fixa%20com%20600%20Megas%20por%20R%24119%2Fm%C3%AAs.%20Vi%20que%20ainda%20tem%2030%20GB%20de%20b%C3%B4nus%20para%20celular.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center">
                         Contratar Internet
                     </a>
                 </div>
@@ -151,7 +156,7 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
 
     <div id="promoModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden">
         <div class="modal-content bg-white p-6 md:p-8 rounded-xl shadow-2xl max-w-md w-full relative animate-fade-in-slide-up">
-            <button id="closePromoModal" class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+            <button id="closePromoModal" class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">×</button>
             <h4 class="text-2xl font-bold claro-red-text mb-2 text-center">Promoção de Hoje!</h4>
             <div class="text-center mb-4">
                 <span class="timer-text-modal">⏳ Tempo restante: <span id="modalTimerDisplay">22:26</span></span>
@@ -164,8 +169,42 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
         </div>
     </div>
 
-    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
-        <p class="font-semibold">MF SERVIÇOS - PARCEIRO AUTORIZADO CLARO EMPRESAS</p>
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-3">MF SERVIÇOS</h5>
+                    <p class="text-sm">PARCEIRO AUTORIZADO CLARO EMPRESAS</p>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-3">Nosso Endereço</h5>
+                    <address class="text-sm not-italic">
+                        <a href="https://www.google.com/maps/search/?api=1&query=R.+Francisco+Andrade,+54+-+Dona+Flor,+Lavras+-+MG,+37200-060" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
+                            <svg class="footer-icon inline-block align-middle" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            R. Francisco Andrade, 54 - Dona Flor<br>
+                            Lavras - MG, 37200-060
+                        </a>
+                    </address>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white text-lg mb-3">Segurança</h5>
+                    <div class="flex items-center justify-center md:justify-start text-sm">
+                        <svg class="footer-icon text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                             <path d="M10 1.944A11.954 11.954 0 002.5 6.553V10.5a1.5 1.5 0 00.965 1.415l4.584 2.292a1.5 1.5 0 001.034.002l4.685-2.343A1.5 1.5 0 0014.5 10.5V6.553A11.954 11.954 0 0010 1.944zM8.5 6.5a.5.5 0 00-1 0v3.793l-.646-.647a.5.5 0 00-.708.708l1.5 1.5a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 9.293V6.5z" />
+                        </svg>
+                        <span>Compra Segura e Protegida</span>
+                    </div>
+                     <p class="text-xs text-gray-400 mt-2">Ambiente certificado para sua tranquilidade.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+                <p>© <span id="currentYear"></span> MF SERVIÇOS. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -193,12 +232,12 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
         }
 
         function startOrResumePromoTimer() {
-            if (timerStarted && promoInterval) return; // Evita múltiplos intervalos se já estiver rodando
+            if (timerStarted && promoInterval) return; 
 
             timerStarted = true;
-            notificationTimerDisplay.classList.remove('hidden'); // Mostra o timer na notificação
+            notificationTimerDisplay.classList.remove('hidden'); 
 
-            clearInterval(promoInterval); // Limpa qualquer timer anterior para segurança
+            clearInterval(promoInterval); 
             
             promoInterval = setInterval(() => {
                 if (timeRemainingInSeconds > 0) {
@@ -208,28 +247,26 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
                     clearInterval(promoInterval);
                     modalTimerDisplay.textContent = "EXPIRADA";
                     notificationTimerDisplay.textContent = "EXPIRADA";
-                    // Opcional: desabilitar botão ou mudar mensagem
                 }
             }, 1000);
         }
         
-        // Inicializa os displays com o tempo correto
-        updateTimerDisplays();
+        updateTimerDisplays(); // Initialize displays on page load
 
         floatingNotificationButton.addEventListener('click', () => {
             promoModal.classList.remove('hidden');
             promoModal.classList.add('flex');
-            if (!timerStarted) { // Inicia o timer somente na primeira vez que o modal é aberto
+            if (!timerStarted) { 
                 startOrResumePromoTimer();
             }
-            notificationTimerDisplay.classList.add('hidden'); // Esconde o timer da notificação quando o modal está aberto
+            notificationTimerDisplay.classList.add('hidden'); 
         });
 
         function closeModalActions() {
             promoModal.classList.add('hidden');
             promoModal.classList.remove('flex');
-            if (timerStarted && timeRemainingInSeconds > 0) { // Só mostra se o timer foi iniciado e não expirou
-                 notificationTimerDisplay.classList.remove('hidden'); // Mostra o timer na notificação
+            if (timerStarted && timeRemainingInSeconds > 0) { 
+                 notificationTimerDisplay.classList.remove('hidden'); 
             }
         }
 
@@ -246,6 +283,8 @@ src="https://www.facebook.com/tr?id=1363843934716910&ev=PageView&noscript=1"
                 closeModalActions();
             }
         });
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 
 </body>
