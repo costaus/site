@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,19 +80,36 @@
             margin-right: 8px;
             fill: currentColor; /* Para que o ícone SVG herde a cor do texto */
         }
+        .nav-button {
+            background-color: white;
+            color: #DA291C;
+            border: 2px solid #DA291C;
+        }
+        .nav-button:hover {
+            background-color: #fdecec;
+            color: #b91c1c;
+            border-color: #b91c1c;
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
-    <header class="claro-red py-6 shadow-lg">
-        <div class="container mx-auto px-4 flex justify-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" alt="Claro Logo" class="h-16 md:h-24">
+    <header class="claro-red py-4 shadow-lg sticky top-0 z-30">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" alt="Claro Logo" class="h-12 md:h-16 mb-3">
+            <nav class="flex space-x-4">
+                <a href="#planos-moveis" class="nav-button font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition-all duration-300 text-sm md:text-base">
+                    Planos Móveis
+                </a>
+                <a href="#internet-residencial" class="nav-button font-semibold py-2 px-4 rounded-lg shadow hover:shadow-md transition-all duration-300 text-sm md:text-base">
+                    Internet Residencial
+                </a>
+            </nav>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
-        <section id="planos-moveis" class="mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Planos Móveis Claro</h1>
+        <section id="planos-moveis" class="mb-12 pt-16 -mt-16"> <h1 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Planos Móveis Claro</h1>
             <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Escolha o plano perfeito para você e navegue com a velocidade e qualidade que só a Claro oferece!</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
@@ -128,22 +145,48 @@
             </div>
         </section>
 
-        <section id="internet-residencial" class="mb-12 py-10 md:py-12 internet-section-bg rounded-xl shadow-lg">
-            <div class="container mx-auto px-4">
+        <section id="internet-residencial" class="mb-12 py-10 md:py-12 internet-section-bg rounded-xl shadow-lg pt-16 -mt-16"> <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Internet Residencial Claro</h2>
                 <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Ultravelocidade para sua casa com benefícios exclusivos!</p>
-                <div class="internet-card-bg rounded-xl shadow-lg p-6 md:p-8 flex flex-col items-center max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
-                    <h3 class="text-2xl md:text-3xl font-semibold claro-red-text mb-3">Internet 600 Mega</h3>
-                    <ul class="text-gray-600 text-lg list-disc list-inside mb-4 text-center md:text-left">
-                        <li>Fibra Ótica de Ultravelocidade</li>
-                        <li>Fone Fixo Ilimitado Brasil</li>
-                    </ul>
-                    <p class="bonus-text font-bold text-xl mb-1 text-center w-full">+ 30GB de Bônus no seu Celular Claro!</p>
-                    <p class="text-gray-800 font-bold text-3xl md:text-4xl my-4">R$ 119,00<span class="text-base font-normal text-gray-600">/mês</span></p>
-                    <p class="text-xs text-gray-500 mb-6 text-center">(Preço pode variar conforme localidade e promoções vigentes)</p>
-                    <a href="https://wa.me/5535984465948?text=Oi%21%20Quero%20contratar%20a%20Claro%20Internet%20Fixa%20com%20600%20Megas%20por%20R%24119%2Fm%C3%AAs.%20Vi%20que%20ainda%20tem%2030%20GB%20de%20b%C3%B4nus%20para%20celular.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center">
-                        Contratar Internet
-                    </a>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                    <div class="internet-card-bg rounded-xl shadow-lg p-6 md:p-8 flex flex-col items-center transform hover:scale-105 transition-transform duration-300 h-full">
+                        <h3 class="text-2xl md:text-3xl font-semibold claro-red-text mb-3 text-center">Internet Fibra 600 Mega!</h3>
+                        <p class="text-gray-700 text-lg mb-2 text-center">Navegue com ultra velocidade de 600 Mega!</p>
+                        
+                        <div class="my-4 space-y-2 text-center">
+                            <p class="text-gray-800 font-bold text-2xl">
+                                R$ 49,90<span class="text-base font-normal text-gray-600">/mês</span>
+                            </p>
+                            <p class="text-xs text-gray-500">(Nos 6 primeiros meses no combo)</p>
+                            
+                            <p class="text-gray-800 font-bold text-2xl mt-2">
+                                R$ 59,90<span class="text-base font-normal text-gray-600">/mês</span>
+                            </p>
+                            <p class="text-xs text-gray-500">(Por 6 meses no plano solo)</p>
+
+                            <p class="text-gray-600 text-sm mt-2">Após 6 meses, plano combo: R$ 79,90/mês.</p>
+                        </div>
+                        
+                        <p class="text-xs text-gray-500 mb-6 text-center">(Consulte condições e disponibilidade)</p>
+                        <a href="https://api.whatsapp.com/send/?phone=5535984465948&text=Ol%C3%A1%2521+Tenho+interesse+em+contratar+o+plano+de+internet+600+Mega+no+combo.+Gostaria+de+saber+mais+detalhes+e+como+fazer+a+contrata%C3%A7%C3%A3o.&type=phone_number&app_absent=0" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center mt-auto">
+                            Contratar Fibra 600 Mega
+                        </a>
+                    </div>
+
+                    <div class="internet-card-bg rounded-xl shadow-lg p-6 md:p-8 flex flex-col items-center transform hover:scale-105 transition-transform duration-300 h-full">
+                        <h3 class="text-2xl md:text-3xl font-semibold claro-red-text mb-3 text-center">Internet 600 Mega + Benefícios</h3>
+                        <ul class="text-gray-600 text-lg list-disc list-inside mb-4 text-center md:text-left">
+                            <li>Fibra Ótica de Ultravelocidade</li>
+                            <li>Fone Fixo Ilimitado Brasil</li>
+                        </ul>
+                        <p class="bonus-text font-bold text-xl mb-1 text-center w-full">+ 30GB de Bônus no seu Celular Claro!</p>
+                        <p class="text-gray-800 font-bold text-3xl md:text-4xl my-4">R$ 119,00<span class="text-base font-normal text-gray-600">/mês</span></p>
+                        <p class="text-xs text-gray-500 mb-6 text-center">(Preço pode variar conforme localidade e promoções vigentes)</p>
+                        <a href="https://wa.me/5535984465948?text=Oi%21%20Quero%20contratar%20a%20Claro%20Internet%20Fixa%20com%20600%20Megas%20por%20R%24119%2Fm%C3%AAs.%20Vi%20que%20ainda%20tem%2030%20GB%20de%20b%C3%B4nus%20para%20celular.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%A3es%3F" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center mt-auto">
+                            Contratar Internet + Benefícios
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -151,7 +194,8 @@
 
     <div id="floatingNotificationButton" class="notification-button fixed bottom-5 right-5 md:bottom-8 md:right-8 claro-red text-white p-4 rounded-xl shadow-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 animate-fade-in-slide-up text-center">
         <span class="font-bold text-lg block">PROMOÇÃO DE HOJE</span>
-        <span id="notificationTimerDisplay" class="timer-text-notification hidden">22:26</span> <p class="text-sm mt-1">Clique para detalhes!</p>
+        <span id="notificationTimerDisplay" class="timer-text-notification hidden"></span> 
+        <p class="text-sm mt-1">Clique para detalhes!</p>
     </div>
 
     <div id="promoModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden">
@@ -159,7 +203,7 @@
             <button id="closePromoModal" class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">×</button>
             <h4 class="text-2xl font-bold claro-red-text mb-2 text-center">Promoção de Hoje!</h4>
             <div class="text-center mb-4">
-                <span class="timer-text-modal">⏳ Tempo restante: <span id="modalTimerDisplay">22:26</span></span>
+                <span class="timer-text-modal">⏳ Tempo restante: <span id="modalTimerDisplay"></span></span>
             </div>
             <p class="text-gray-700 mb-3 text-center">Ao assinar um <strong class="claro-red-text">Plano Móvel</strong> junto com o plano de <strong class="claro-red-text">Internet Fixa de 600 Mega</strong>, você ganha um bônus adicional de <strong class="bonus-text">+30GB</strong> no seu plano móvel!</p>
             <p class="text-gray-700 mb-6 text-center">Aproveite essa combinação poderosa e turbine sua conexão!</p>
@@ -180,7 +224,7 @@
                 <div>
                     <h5 class="font-bold text-white text-lg mb-3">Nosso Endereço</h5>
                     <address class="text-sm not-italic">
-                        <a href="https://www.google.com/maps/search/?api=1&query=R.+Francisco+Andrade,+54+-+Dona+Flor,+Lavras+-+MG,+37200-060" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
+                        <a href="https://www.google.com/maps/search/?api=1&query=R.+Francisco+Andrade,+54+-+Dona+Flor+Lavras+-+MG,+37200-060" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
                             <svg class="footer-icon inline-block align-middle" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                             </svg>
@@ -194,7 +238,7 @@
                     <h5 class="font-bold text-white text-lg mb-3">Segurança</h5>
                     <div class="flex items-center justify-center md:justify-start text-sm">
                         <svg class="footer-icon text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                             <path d="M10 1.944A11.954 11.954 0 002.5 6.553V10.5a1.5 1.5 0 00.965 1.415l4.584 2.292a1.5 1.5 0 001.034.002l4.685-2.343A1.5 1.5 0 0014.5 10.5V6.553A11.954 11.954 0 0010 1.944zM8.5 6.5a.5.5 0 00-1 0v3.793l-.646-.647a.5.5 0 00-.708.708l1.5 1.5a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 9.293V6.5z" />
+                                 <path d="M10 1.944A11.954 11.954 0 002.5 6.553V10.5a1.5 1.5 0 00.965 1.415l4.584 2.292a1.5 1.5 0 001.034.002l4.685-2.343A1.5 1.5 0 0014.5 10.5V6.553A11.954 11.954 0 0010 1.944zM8.5 6.5a.5.5 0 00-1 0v3.793l-.646-.647a.5.5 0 00-.708.708l1.5 1.5a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 9.293V6.5z" />
                         </svg>
                         <span>Compra Segura e Protegida</span>
                     </div>
@@ -217,7 +261,7 @@
 
         let promoInterval;
         let timeRemainingInSeconds = (22 * 60) + 26; // 22 minutos e 26 segundos
-        let timerStarted = false;
+        let timerStarted = false; 
 
         function formatTime(seconds) {
             const m = Math.floor(seconds / 60);
@@ -225,66 +269,109 @@
             return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
         }
 
-        function updateTimerDisplays() {
+        function updateAllTimerDisplays() {
             const formattedTime = formatTime(timeRemainingInSeconds);
-            modalTimerDisplay.textContent = formattedTime;
-            notificationTimerDisplay.textContent = formattedTime;
+            if (modalTimerDisplay) {
+                modalTimerDisplay.textContent = formattedTime;
+            }
+            // Só atualiza o timer da notificação se ele NÃO estiver escondido
+            if (notificationTimerDisplay && !notificationTimerDisplay.classList.contains('hidden')) {
+                notificationTimerDisplay.textContent = formattedTime;
+            }
         }
 
-        function startOrResumePromoTimer() {
+        function startPromoTimerLogic() {
+            // Se o timer já foi iniciado e o intervalo existe, não faz nada
             if (timerStarted && promoInterval) return; 
-
-            timerStarted = true;
-            notificationTimerDisplay.classList.remove('hidden'); 
-
+            
+            timerStarted = true; 
+            
+            // Limpa qualquer intervalo anterior para evitar múltiplos timers rodando
             clearInterval(promoInterval); 
             
+            // Atualiza os displays imediatamente ao iniciar o timer
+            updateAllTimerDisplays();
+
             promoInterval = setInterval(() => {
                 if (timeRemainingInSeconds > 0) {
                     timeRemainingInSeconds--;
-                    updateTimerDisplays();
+                    updateAllTimerDisplays();
                 } else {
                     clearInterval(promoInterval);
-                    modalTimerDisplay.textContent = "EXPIRADA";
-                    notificationTimerDisplay.textContent = "EXPIRADA";
+                    if (modalTimerDisplay) modalTimerDisplay.textContent = "EXPIRADA";
+                    // Se o timer da notificação estiver visível, atualiza para EXPIRADA
+                    if (notificationTimerDisplay && !notificationTimerDisplay.classList.contains('hidden')) {
+                        notificationTimerDisplay.textContent = "EXPIRADA";
+                    }
                 }
             }, 1000);
         }
         
-        updateTimerDisplays(); // Initialize displays on page load
+        // Define o valor inicial do timer no modal.
+        // O timer da notificação continua escondido por padrão (classe 'hidden' no HTML).
+        if (modalTimerDisplay) {
+            modalTimerDisplay.textContent = formatTime(timeRemainingInSeconds);
+        }
 
-        floatingNotificationButton.addEventListener('click', () => {
-            promoModal.classList.remove('hidden');
-            promoModal.classList.add('flex');
-            if (!timerStarted) { 
-                startOrResumePromoTimer();
-            }
-            notificationTimerDisplay.classList.add('hidden'); 
-        });
+
+        if (floatingNotificationButton) {
+            floatingNotificationButton.addEventListener('click', () => {
+                if (promoModal) {
+                    promoModal.classList.remove('hidden');
+                    promoModal.classList.add('flex');
+                }
+                // Inicia a lógica do timer (que inclui a contagem e atualização dos displays)
+                // SOMENTE se ainda não foi iniciado.
+                if (!timerStarted) { 
+                    startPromoTimerLogic();
+                } else {
+                    // Se o timer já foi iniciado, apenas garante que o display do modal está atualizado.
+                    updateAllTimerDisplays();
+                }
+                // Garante que o timer da notificação esteja escondido quando o modal está aberto.
+                if (notificationTimerDisplay) {
+                    notificationTimerDisplay.classList.add('hidden'); 
+                }
+            });
+        }
 
         function closeModalActions() {
-            promoModal.classList.add('hidden');
-            promoModal.classList.remove('flex');
-            if (timerStarted && timeRemainingInSeconds > 0) { 
+            if (promoModal) {
+                promoModal.classList.add('hidden');
+                promoModal.classList.remove('flex');
+            }
+            // Se o timer foi iniciado e ainda há tempo, mostra o timer na notificação.
+            if (timerStarted && timeRemainingInSeconds > 0 && notificationTimerDisplay) { 
                  notificationTimerDisplay.classList.remove('hidden'); 
+                 updateAllTimerDisplays(); // Garante que o tempo correto seja exibido
+            } else if (notificationTimerDisplay) {
+                // Se o tempo expirou ou o timer não deveria estar visível, garante que está escondido.
+                notificationTimerDisplay.classList.add('hidden');
             }
         }
 
-        closePromoModalButton.addEventListener('click', closeModalActions);
+        if (closePromoModalButton) {
+            closePromoModalButton.addEventListener('click', closeModalActions);
+        }
 
-        promoModal.addEventListener('click', (event) => {
-            if (event.target === promoModal) {
-                closeModalActions();
-            }
-        });
+        if (promoModal) {
+            promoModal.addEventListener('click', (event) => {
+                if (event.target === promoModal) {
+                    closeModalActions();
+                }
+            });
+        }
 
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && !promoModal.classList.contains('hidden')) {
+            if (event.key === 'Escape' && promoModal && !promoModal.classList.contains('hidden')) {
                 closeModalActions();
             }
         });
         
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const currentYearEl = document.getElementById('currentYear');
+        if (currentYearEl) {
+            currentYearEl.textContent = new Date().getFullYear();
+        }
     </script>
 
 </body>
