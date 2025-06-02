@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg?v=1" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claro - Planos Incríveis para Você!</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Estilos personalizados podem ser adicionados aqui, se necessário,
-           mas vamos priorizar o Tailwind CSS para a maior parte da estilização. */
         body {
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
@@ -24,11 +22,19 @@
         .claro-hover-red:hover {
             background-color: #b91c1c; /* Um tom de vermelho mais escuro para hover */
         }
+        .claro-hover-red-text:hover {
+            color: #b91c1c;
+        }
         .bonus-text {
             color: #16a34a; /* Verde para bônus */
         }
+        .internet-section-bg {
+            background-color: #fdecec; /* Um tom de vermelho bem claro para o fundo da seção de internet */
+        }
+        .internet-card-bg {
+            background-color: #fff;
+        }
 
-        /* Animação simples para a notificação */
         @keyframes fadeInSlideUp {
             from {
                 opacity: 0;
@@ -39,8 +45,23 @@
                 transform: translateY(0);
             }
         }
-        .notification-animation {
-            animation: fadeInSlideUp 0.5s ease-out;
+        .animate-fade-in-slide-up {
+            animation: fadeInSlideUp 0.5s ease-out forwards;
+        }
+
+        .modal-overlay {
+            z-index: 50;
+        }
+        .modal-content {
+            z-index: 51;
+        }
+        .notification-button {
+            z-index: 40;
+        }
+        .timer-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333; /* Cor escura para o timer */
         }
     </style>
 </head>
@@ -48,7 +69,7 @@
 
     <header class="claro-red py-6 shadow-lg">
         <div class="container mx-auto px-4 flex justify-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" alt="Claro Logo" class="h-12 md:h-16">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Claro.svg" alt="Claro Logo" class="h-14 md:h-20">
         </div>
     </header>
 
@@ -94,73 +115,115 @@
             </div>
         </section>
 
-        <hr class="my-10 md:my-12 border-gray-300">
+        <section id="internet-residencial" class="mb-12 py-10 md:py-12 internet-section-bg rounded-xl shadow-lg">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Internet Residencial Claro</h2>
+                <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Ultravelocidade para sua casa com benefícios exclusivos!</p>
 
-        <section id="internet-residencial" class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Internet Residencial Claro</h2>
-            <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Ultravelocidade para sua casa com benefícios exclusivos!</p>
-
-            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col items-center max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
-                <h3 class="text-2xl md:text-3xl font-semibold claro-red-text mb-3">Internet 600 Mega</h3>
-                <ul class="text-gray-600 text-lg list-disc list-inside mb-4 text-center md:text-left">
-                    <li>Fibra Ótica de Ultravelocidade</li>
-                    <li>Fone Fixo Ilimitado Brasil</li>
-                </ul>
-                <p class="bonus-text font-bold text-xl mb-1">+ 30GB de Bônus no seu Celular Claro!</p>
-                <p class="text-gray-800 font-bold text-3xl md:text-4xl my-4">R$ 119,00<span class="text-base font-normal text-gray-600">/mês</span></p>
-                <p class="text-xs text-gray-500 mb-6 text-center">(Preço pode variar conforme localidade e promoções vigentes)</p>
-                <a href="https://wa.me/5535984465948?text=Oi%21%20Quero%20contratar%20a%20Claro%20Internet%20Fixa%20com%20600%20Megas%20por%20R%24119%2Fm%C3%AAs.%20Vi%20que%20ainda%20tem%2030%20GB%20de%20b%C3%B4nus%20para%20celular.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center">
-                    Contratar Internet
-                </a>
+                <div class="internet-card-bg rounded-xl shadow-lg p-6 md:p-8 flex flex-col items-center max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl md:text-3xl font-semibold claro-red-text mb-3">Internet 600 Mega</h3>
+                    <ul class="text-gray-600 text-lg list-disc list-inside mb-4 text-center md:text-left">
+                        <li>Fibra Ótica de Ultravelocidade</li>
+                        <li>Fone Fixo Ilimitado Brasil</li>
+                    </ul>
+                    <p class="bonus-text font-bold text-xl mb-1">+ 30GB de Bônus no seu Celular Claro!</p>
+                    <p class="text-gray-800 font-bold text-3xl md:text-4xl my-4">R$ 119,00<span class="text-base font-normal text-gray-600">/mês</span></p>
+                    <p class="text-xs text-gray-500 mb-6 text-center">(Preço pode variar conforme localidade e promoções vigentes)</p>
+                    <a href="https://wa.me/5535984465948?text=Oi%21%20Quero%20contratar%20a%20Claro%20Internet%20Fixa%20com%20600%20Megas%20por%20R%24119%2Fm%C3%AAs.%20Vi%20que%20ainda%20tem%2030%20GB%20de%20b%C3%B4nus%20para%20celular.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center">
+                        Contratar Internet
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <div id="floatingNotificationButton" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 claro-red text-white p-4 rounded-lg shadow-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 notification-animation z-50">
-        <span class="font-bold text-lg">🎁 PROMOÇÃO!</span>
-        <p class="text-sm">Clique e confira!</p>
+    <div id="floatingNotificationButton" class="notification-button fixed bottom-5 right-5 md:bottom-8 md:right-8 claro-red text-white p-4 rounded-xl shadow-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 animate-fade-in-slide-up">
+        <span class="font-bold text-lg">PROMOÇÃO DE HOJE</span>
+        <p class="text-sm">Clique para detalhes!</p>
     </div>
 
-    <div id="promoModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white p-6 md:p-8 rounded-xl shadow-2xl max-w-md w-full relative notification-animation">
-            <button id="closePromoModal" class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
-            <h4 class="text-2xl font-bold claro-red-text mb-4">✨ Bônus Turbinado! ✨</h4>
-            <p class="text-gray-700 mb-3">Ao assinar um plano de <strong class="claro-red-text">Internet Fixa Claro</strong>, você ganha +<strong class="bonus-text">30GB DE BÔNUS ADICIONAIS</strong> em qualquer um dos nossos planos móveis!</p>
-            <p class="text-gray-700 mb-4">Turbine seu celular com a força da sua internet de casa!</p>
-            <p class="text-gray-600 text-sm">Fale com um consultor e aproveite!</p>
+    <div id="promoModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden">
+        <div class="modal-content bg-white p-6 md:p-8 rounded-xl shadow-2xl max-w-md w-full relative animate-fade-in-slide-up">
+            <button id="closePromoModal" class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+            <h4 class="text-2xl font-bold claro-red-text mb-2 text-center">Promoção de Hoje!</h4>
+            <div class="text-center mb-4">
+                <span class="timer-text">⏳ Tempo restante: <span id="promoTimer">24:00</span></span>
+            </div>
+            <p class="text-gray-700 mb-3 text-center">Ao assinar um <strong class="claro-red-text">Plano Móvel</strong> junto com o plano de <strong class="claro-red-text">Internet Fixa de 600 Mega</strong>, você ganha um bônus adicional de <strong class="bonus-text">+30GB</strong> no seu plano móvel!</p>
+            <p class="text-gray-700 mb-6 text-center">Aproveite essa combinação poderosa e turbine sua conexão!</p>
+            <a href="https://wa.me/5535984465948?text=Ol%C3%A1%2C%20vi%20a%20promo%C3%A7%C3%A3o%20da%20Claro%20Internet%20Fixa%20no%20site%20e%20tenho%20interesse.%20Plano%20com%20600%20Megas%20de%20velocidade%2C%20telefone%20fixo%20ilimitado%20e%2030GB%20de%20b%C3%B4nus%20para%20celular%2C%20por%20R%24%20119%2C00%2Fm%C3%AAs.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20saber%20como%20contratar" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full text-center">
+                Aproveitar Promoção
+            </a>
         </div>
     </div>
 
     <footer class="bg-gray-800 text-white text-center py-6 mt-12">
-        <p>&copy; <span id="currentYear"></span> Claro Brasil. Todos os direitos reservados.</p>
+        <p class="font-semibold">MF SERVIÇOS - PARCEIRO AUTORIZADO CLARO EMPRESAS</p>
         <p class="text-sm text-gray-400">Esta é uma página de demonstração.</p>
     </footer>
 
     <script>
-        // Script para a notificação e modal
         const floatingNotificationButton = document.getElementById('floatingNotificationButton');
         const promoModal = document.getElementById('promoModal');
         const closePromoModalButton = document.getElementById('closePromoModal');
+        const promoTimerDisplay = document.getElementById('promoTimer');
+        let promoInterval;
+
+        function startPromoTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            clearInterval(promoInterval); // Limpa qualquer timer anterior
+
+            promoInterval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(promoInterval);
+                    display.textContent = "EXPIRADA";
+                    // Opcional: desabilitar botão ou mudar mensagem
+                }
+            }, 1000);
+        }
 
         floatingNotificationButton.addEventListener('click', () => {
             promoModal.classList.remove('hidden');
+            promoModal.classList.add('flex');
+            const twentyFourMinutes = 24 * 60;
+            startPromoTimer(twentyFourMinutes, promoTimerDisplay);
         });
 
         closePromoModalButton.addEventListener('click', () => {
             promoModal.classList.add('hidden');
+            promoModal.classList.remove('flex');
+            clearInterval(promoInterval); // Para o timer se o modal for fechado
         });
 
-        // Fecha o modal se clicar fora dele
         promoModal.addEventListener('click', (event) => {
             if (event.target === promoModal) {
                 promoModal.classList.add('hidden');
+                promoModal.classList.remove('flex');
+                clearInterval(promoInterval);
             }
         });
 
-        // Atualiza o ano no rodapé
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !promoModal.classList.contains('hidden')) {
+                promoModal.classList.add('hidden');
+                promoModal.classList.remove('flex');
+                clearInterval(promoInterval);
+            }
+        });
+
+        // Não é mais necessário atualizar o ano no rodapé com o novo texto.
+        // document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 
 </body>
 </html>
+
 
