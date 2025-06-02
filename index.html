@@ -22,46 +22,42 @@
         .claro-hover-red:hover {
             background-color: #b91c1c; /* Um tom de vermelho mais escuro para hover */
         }
-        .claro-hover-red-text:hover {
-            color: #b91c1c;
-        }
         .bonus-text {
             color: #16a34a; /* Verde para bônus */
         }
         .internet-section-bg {
-            background-color: #fdecec; /* Um tom de vermelho bem claro para o fundo da seção de internet */
+            background-color: #fdecec;
         }
         .internet-card-bg {
             background-color: #fff;
         }
 
         @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in-slide-up {
             animation: fadeInSlideUp 0.5s ease-out forwards;
         }
 
-        .modal-overlay {
-            z-index: 50;
-        }
-        .modal-content {
-            z-index: 51;
-        }
-        .notification-button {
-            z-index: 40;
-        }
-        .timer-text {
+        .modal-overlay { z-index: 50; }
+        .modal-content { z-index: 51; }
+        .notification-button { z-index: 40; }
+
+        .timer-text-modal {
             font-size: 1.1em;
             font-weight: bold;
-            color: #333; /* Cor escura para o timer */
+            color: #333;
+        }
+        .timer-text-notification {
+            font-size: 0.75rem; /* Tamanho menor para o timer na notificação */
+            font-weight: bold;
+            color: white; /* Cor que contraste com o fundo da notificação */
+            background-color: rgba(0,0,0,0.2); /* Fundo leve para destacar */
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 4px; /* Espaçamento do texto principal da notificação */
+            display: inline-block; /* Para que o padding funcione bem */
         }
     </style>
 </head>
@@ -74,11 +70,9 @@
     </header>
 
     <main class="container mx-auto px-4 py-8 md:py-12">
-
         <section id="planos-moveis" class="mb-12">
             <h1 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Planos Móveis Claro</h1>
             <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Escolha o plano perfeito para você e navegue com a velocidade e qualidade que só a Claro oferece!</p>
-
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-semibold claro-red-text mb-3">Plano Essencial</h3>
@@ -90,7 +84,6 @@
                         Contratar Agora
                     </a>
                 </div>
-
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-semibold claro-red-text mb-3">Plano Popular</h3>
                     <p class="text-gray-600 text-lg">15GB de Internet</p>
@@ -101,7 +94,6 @@
                         Contratar Agora
                     </a>
                 </div>
-
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-semibold claro-red-text mb-3">Plano Premium</h3>
                     <p class="text-gray-600 text-lg">25GB de Internet</p>
@@ -119,7 +111,6 @@
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold claro-red-text text-center mb-4">Internet Residencial Claro</h2>
                 <p class="text-center text-gray-700 text-lg mb-8 md:mb-10">Ultravelocidade para sua casa com benefícios exclusivos!</p>
-
                 <div class="internet-card-bg rounded-xl shadow-lg p-6 md:p-8 flex flex-col items-center max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl md:text-3xl font-semibold claro-red-text mb-3">Internet 600 Mega</h3>
                     <ul class="text-gray-600 text-lg list-disc list-inside mb-4 text-center md:text-left">
@@ -137,9 +128,9 @@
         </section>
     </main>
 
-    <div id="floatingNotificationButton" class="notification-button fixed bottom-5 right-5 md:bottom-8 md:right-8 claro-red text-white p-4 rounded-xl shadow-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 animate-fade-in-slide-up">
-        <span class="font-bold text-lg">PROMOÇÃO DE HOJE</span>
-        <p class="text-sm">Clique para detalhes!</p>
+    <div id="floatingNotificationButton" class="notification-button fixed bottom-5 right-5 md:bottom-8 md:right-8 claro-red text-white p-4 rounded-xl shadow-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 animate-fade-in-slide-up text-center">
+        <span class="font-bold text-lg block">PROMOÇÃO DE HOJE</span>
+        <span id="notificationTimerDisplay" class="timer-text-notification hidden">22:26</span> <p class="text-sm mt-1">Clique para detalhes!</p>
     </div>
 
     <div id="promoModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden">
@@ -147,11 +138,11 @@
             <button id="closePromoModal" class="absolute top-3 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
             <h4 class="text-2xl font-bold claro-red-text mb-2 text-center">Promoção de Hoje!</h4>
             <div class="text-center mb-4">
-                <span class="timer-text">⏳ Tempo restante: <span id="promoTimer">22:24</span></span>
+                <span class="timer-text-modal">⏳ Tempo restante: <span id="modalTimerDisplay">22:26</span></span>
             </div>
             <p class="text-gray-700 mb-3 text-center">Ao assinar um <strong class="claro-red-text">Plano Móvel</strong> junto com o plano de <strong class="claro-red-text">Internet Fixa de 600 Mega</strong>, você ganha um bônus adicional de <strong class="bonus-text">+30GB</strong> no seu plano móvel!</p>
             <p class="text-gray-700 mb-6 text-center">Aproveite essa combinação poderosa e turbine sua conexão!</p>
-            <a href="https://wa.me/5535984465948?text=Ol%C3%A1%2C%20vi%20a%20promo%C3%A7%C3%A3o%20da%20Claro%20Internet%20Fixa%20no%20site%20e%20tenho%20interesse.%20Plano%20com%20600%20Megas%20de%20velocidade%2C%20telefone%20fixo%20ilimitado%20e%2030GB%20de%20b%C3%B4nus%20para%20celular%2C%20por%20R%24%20119%2C00%2Fm%C3%AAs.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20saber%20como%20contratar" target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full text-center">
+            <a href="https://wa.me/5535984465948?text=Ol%C3%A1%2C%20vi%20a%20promo%C3%A7%C3%A3o%20da%20Claro%20no%20site%20e%20tenho%20interesse%20em%20assinar%20a%20internet%20fixa%20junto%20com%20um%20plano%20m%C3%B3vel.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20benef%C3%ADcios%20e%20como%20contratar." target="_blank" class="claro-red claro-hover-red text-white font-semibold py-3 px-8 rounded-lg shadow hover:shadow-md transition-all duration-300 w-full text-center">
                 Aproveitar Promoção
             </a>
         </div>
@@ -166,64 +157,81 @@
         const floatingNotificationButton = document.getElementById('floatingNotificationButton');
         const promoModal = document.getElementById('promoModal');
         const closePromoModalButton = document.getElementById('closePromoModal');
-        const promoTimerDisplay = document.getElementById('promoTimer');
+        
+        const modalTimerDisplay = document.getElementById('modalTimerDisplay');
+        const notificationTimerDisplay = document.getElementById('notificationTimerDisplay');
+
         let promoInterval;
+        let timeRemainingInSeconds = (22 * 60) + 26; // 22 minutos e 26 segundos
+        let timerStarted = false;
 
-        function startPromoTimer(duration, display) {
-            let timer = duration, minutes, seconds;
-            clearInterval(promoInterval); // Limpa qualquer timer anterior
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }
 
-            promoInterval = setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
+        function updateTimerDisplays() {
+            const formattedTime = formatTime(timeRemainingInSeconds);
+            modalTimerDisplay.textContent = formattedTime;
+            notificationTimerDisplay.textContent = formattedTime;
+        }
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+        function startOrResumePromoTimer() {
+            if (timerStarted && promoInterval) return; // Evita múltiplos intervalos se já estiver rodando
 
-                display.textContent = minutes + ":" + seconds;
+            timerStarted = true;
+            notificationTimerDisplay.classList.remove('hidden'); // Mostra o timer na notificação
 
-                if (--timer < 0) {
+            clearInterval(promoInterval); // Limpa qualquer timer anterior para segurança
+            
+            promoInterval = setInterval(() => {
+                if (timeRemainingInSeconds > 0) {
+                    timeRemainingInSeconds--;
+                    updateTimerDisplays();
+                } else {
                     clearInterval(promoInterval);
-                    display.textContent = "EXPIRADA";
+                    modalTimerDisplay.textContent = "EXPIRADA";
+                    notificationTimerDisplay.textContent = "EXPIRADA";
                     // Opcional: desabilitar botão ou mudar mensagem
                 }
             }, 1000);
         }
+        
+        // Inicializa os displays com o tempo correto
+        updateTimerDisplays();
 
         floatingNotificationButton.addEventListener('click', () => {
             promoModal.classList.remove('hidden');
             promoModal.classList.add('flex');
-            const twentyFourMinutes = 24 * 60;
-            startPromoTimer(twentyFourMinutes, promoTimerDisplay);
+            if (!timerStarted) { // Inicia o timer somente na primeira vez que o modal é aberto
+                startOrResumePromoTimer();
+            }
+            notificationTimerDisplay.classList.add('hidden'); // Esconde o timer da notificação quando o modal está aberto
         });
 
-        closePromoModalButton.addEventListener('click', () => {
+        function closeModalActions() {
             promoModal.classList.add('hidden');
             promoModal.classList.remove('flex');
-            clearInterval(promoInterval); // Para o timer se o modal for fechado
-        });
+            if (timerStarted && timeRemainingInSeconds > 0) { // Só mostra se o timer foi iniciado e não expirou
+                 notificationTimerDisplay.classList.remove('hidden'); // Mostra o timer na notificação
+            }
+        }
+
+        closePromoModalButton.addEventListener('click', closeModalActions);
 
         promoModal.addEventListener('click', (event) => {
             if (event.target === promoModal) {
-                promoModal.classList.add('hidden');
-                promoModal.classList.remove('flex');
-                clearInterval(promoInterval);
+                closeModalActions();
             }
         });
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && !promoModal.classList.contains('hidden')) {
-                promoModal.classList.add('hidden');
-                promoModal.classList.remove('flex');
-                clearInterval(promoInterval);
+                closeModalActions();
             }
         });
-
-        // Não é mais necessário atualizar o ano no rodapé com o novo texto.
-        // document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 
 </body>
 </html>
-
-
