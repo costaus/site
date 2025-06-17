@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savana Eventos - Lavras/MG</title>
+    <title>Savana Eventos - A sua nova experiência de festa em Lavras/MG</title>
     
+    <!-- Meta Tags Essenciais para SEO -->
+    <meta name="description" content="Savana Eventos - As melhores e mais inesquecíveis festas universitárias em Lavras, MG. Confira nossa agenda, compre ingressos e fale conosco.">
+    <meta name="keywords" content="eventos, festas, Lavras, universitário, Savana, balada, show, música">
+    <meta name="author" content="Savana Eventos">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:title" content="Savana Eventos - A sua nova experiência de festa">
+    <meta property="og:description" content="As melhores e mais inesquecíveis festas universitárias em Lavras, MG.">
+    <meta property="og:image" content="https://iili.io/FCvz5DQ.png">
+    <meta property="og:url" content="URL_DO_SEU_SITE_AQUI">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Savana Eventos - A sua nova experiência de festa">
+    <meta name="twitter:description" content="As melhores e mais inesquecíveis festas universitárias em Lavras, MG.">
+    <meta name="twitter:image" content="https://iili.io/FCvz5DQ.png">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -13,14 +31,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Favicon (ícone da aba do navegador) -->
+    <!-- Favicon -->
     <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
     <style>
         /* Estilos personalizados e animações */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0a0a0a; /* Fundo principal escuro */
+            background-color: #0a0a0a;
             color: #f0f0f0;
         }
 
@@ -69,7 +87,7 @@
             z-index: -1;
         }
 
-        /* Estilo do Pre-loader (tela de carregamento) */
+        /* Estilo do Pre-loader */
         #loader {
             position: fixed;
             top: 0;
@@ -167,6 +185,17 @@
             border-radius: 2px;
             box-shadow: 0 0 15px var(--cor-principal);
         }
+
+        /* Animação de Revelar ao Rolar (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -184,7 +213,7 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <!-- LOGO -->
             <a href="#home">
-                <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana" class="h-12 transition-transform duration-300 hover:scale-110">
+                <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-12 transition-transform duration-300 hover:scale-110">
             </a>
             
             <!-- MENU DE NAVEGAÇÃO (Desktop) -->
@@ -196,8 +225,9 @@
 
             <!-- BOTÃO MENU MOBILE -->
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu de navegação">
                     <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <title>Menu</title>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h10"></path>
                     </svg>
                 </button>
@@ -213,14 +243,13 @@
 
     <main>
         <!-- Seção Home (Banner) -->
-        <!-- O padding-top (pt-24) foi adicionado para evitar que o conteúdo fique atrás do header fixo -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-24">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase" style="text-shadow: 0px 0px 15px rgba(231, 17, 240, 0.4);">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase reveal" style="text-shadow: 0px 0px 15px rgba(231, 17, 240, 0.4);">
                 <span class="text-white">SAVANA</span>
                 <span style="color: var(--cor-principal);">EVENTOS</span>
             </h1>
-            <p class="text-xl md:text-2xl mt-4 font-light text-gray-300">A sua nova experiência de festa em Lavras - MG.</p>
-            <a href="#eventos" class="mt-12 bg-transparent border-2 border-[var(--cor-principal)] text-[var(--cor-principal)] font-bold py-3 px-10 rounded-full uppercase tracking-wider transition-all duration-300 hover:bg-[var(--cor-principal)] hover:text-white hover:scale-105 glow-effect">
+            <p class="text-xl md:text-2xl mt-4 font-light text-gray-300 reveal" style="transition-delay: 150ms;">A sua nova experiência de festa em Lavras - MG.</p>
+            <a href="#eventos" class="mt-12 bg-transparent border-2 border-[var(--cor-principal)] text-[var(--cor-principal)] font-bold py-3 px-10 rounded-full uppercase tracking-wider transition-all duration-300 hover:bg-[var(--cor-principal)] hover:text-white hover:scale-105 glow-effect reveal" style="transition-delay: 300ms;">
                 Ver Próximos Eventos
             </a>
         </section>
@@ -228,38 +257,35 @@
         <!-- Seção Próximos Eventos -->
         <section id="eventos" class="py-20 md:py-32 bg-black bg-opacity-30">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 section-title-underline">Próximos <span style="color: var(--cor-principal);">Eventos</span></h2>
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 section-title-underline reveal">Próximos <span style="color: var(--cor-principal);">Eventos</span></h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     
-                    <!-- CARD DE EVENTO EXEMPLO 1 -->
-                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect">
+                    <!-- CARD DE EVENTO 1 (Ativo) -->
+                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect reveal">
                         <div class="event-card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop" alt="Imagem de festa" class="w-full h-56 object-cover">
+                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a0a/E711F0?text=Savana+Fest';" alt="Pessoas dançando em uma festa com luzes neon coloridas." class="w-full h-56 object-cover">
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col">
                             <h3 class="text-2xl font-bold mb-2">SAVANA FEST - EDIÇÃO NEON</h3>
-                            <p class="text-[var(--cor-principal)] font-semibold mb-4">EM BREVE | Local a definir</p>
-                            <p class="text-gray-400 mb-6 h-24">Prepare-se para brilhar na noite mais colorida do ano. Muito funk, eletrônico e surpresas.</p>
-                            <div class="disabled-ticket-button">
-                                <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
-                                    Comprar Ingresso
-                                </button>
-                                <span class="tooltip-text">Vendas em breve!</span>
-                            </div>
+                            <p class="text-[var(--cor-principal)] font-semibold mb-4">24 AGOSTO | Expolavras</p>
+                            <p class="text-gray-400 mb-6 h-24 flex-grow">Prepare-se para brilhar na noite mais colorida do ano. Muito funk, eletrônico e surpresas.</p>
+                             <a href="#" class="w-full bg-[var(--cor-principal)] text-white font-bold py-3 px-6 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect">
+                                Comprar Ingresso
+                            </a>
                         </div>
                     </div>
                     
-                    <!-- CARD DE EVENTO EXEMPLO 2 -->
-                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect">
+                    <!-- CARD DE EVENTO 2 (Em Breve) -->
+                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect reveal" style="transition-delay: 150ms;">
                         <div class="event-card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop" alt="Imagem de festa com DJ" class="w-full h-56 object-cover">
+                           <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a0a/E711F0?text=Calourada';" alt="DJ tocando em uma festa animada com a multidão ao fundo." class="w-full h-56 object-cover">
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col">
                             <h3 class="text-2xl font-bold mb-2">CALOURADA INSANA</h3>
                             <p class="text-[var(--cor-principal)] font-semibold mb-4">AGUARDEM | República Savana</p>
-                            <p class="text-gray-400 mb-6 h-24">A recepção de calouros que vai parar Lavras. Open bar e as melhores atrações para começar o semestre com o pé direito.</p>
-                            <div class="disabled-ticket-button">
+                            <p class="text-gray-400 mb-6 h-24 flex-grow">A recepção de calouros que vai parar Lavras. Open bar e as melhores atrações para começar o semestre.</p>
+                            <div class="disabled-ticket-button mt-auto">
                                 <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
                                     Comprar Ingresso
                                 </button>
@@ -268,16 +294,16 @@
                         </div>
                     </div>
                     
-                    <!-- CARD DE EVENTO EXEMPLO 3 -->
-                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect">
+                    <!-- CARD DE EVENTO 3 (Em Breve) -->
+                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect reveal" style="transition-delay: 300ms;">
                         <div class="event-card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop" alt="Imagem de festa na piscina" class="w-full h-56 object-cover">
+                           <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a0a/E711F0?text=Sunset';" alt="Amigos se divertindo em uma festa na piscina durante o pôr do sol." class="w-full h-56 object-cover">
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col">
                             <h3 class="text-2xl font-bold mb-2">SUNSET SAVANA</h3>
                             <p class="text-[var(--cor-principal)] font-semibold mb-4">NOVEMBRO | Sítio Paraíso</p>
-                            <p class="text-gray-400 mb-6 h-24">O melhor do pagode e eletrônico para curtir o pôr do sol em um lugar incrível com uma vista de tirar o fôlego.</p>
-                            <div class="disabled-ticket-button">
+                            <p class="text-gray-400 mb-6 h-24 flex-grow">O melhor do pagode e eletrônico para curtir o pôr do sol em um lugar incrível com vista de tirar o fôlego.</p>
+                            <div class="disabled-ticket-button mt-auto">
                                 <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
                                     Comprar Ingresso
                                 </button>
@@ -293,8 +319,8 @@
         <!-- Seção Quem Somos -->
         <section id="sobre" class="py-20 md:py-32">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 section-title-underline">Quem <span style="color: var(--cor-principal);">Somos</span></h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 section-title-underline reveal">Quem <span style="color: var(--cor-principal);">Somos</span></h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed reveal">
                     A Savana nasceu da paixão por criar momentos inesquecíveis. Somos mais do que uma empresa de eventos, somos um movimento que busca redefinir a noite universitária em Lavras. Com festas ousadas, produções impecáveis e uma energia contagiante, nosso objetivo é um só: proporcionar a melhor experiência da sua vida. Bem-vindo à selva de emoções. Bem-vindo à Savana!
                 </p>
             </div>
@@ -303,9 +329,9 @@
         <!-- Seção Contato -->
         <section id="contato" class="py-20 md:py-32 bg-black bg-opacity-30">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 text-center section-title-underline">Fale <span style="color: var(--cor-principal);">Conosco</span></h2>
-                <div class="max-w-xl mx-auto">
-                    <form action="#" method="POST">
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 text-center section-title-underline reveal">Fale <span style="color: var(--cor-principal);">Conosco</span></h2>
+                <div class="max-w-xl mx-auto reveal">
+                    <form id="contact-form">
                         <div class="mb-6">
                             <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Nome</label>
                             <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Seu nome completo" required>
@@ -319,11 +345,13 @@
                             <textarea id="message" name="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Escreva sua dúvida, sugestão ou proposta aqui..." required></textarea>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect">
+                            <button type="submit" id="submit-button" class="w-full md:w-auto bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect transition-all duration-300">
                                 Enviar Mensagem
                             </button>
                         </div>
                     </form>
+                    <!-- Mensagem de feedback do formulário -->
+                    <div id="form-feedback" class="mt-6 text-center text-lg font-semibold"></div>
                 </div>
             </div>
         </section>
@@ -336,10 +364,9 @@
             <p class="text-lg font-bold">SAVANA EVENTOS</p>
             <p class="mb-4">&copy; 2024. Todos os direitos reservados.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <!-- Links para redes sociais - Altere aqui -->
-                <a href="https://instagram.com/savanalavras" target="_blank" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">Instagram</a>
-                <a href="#" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">TikTok</a>
-                <a href="mailto:contato@savanaeventos.com.br" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">Email</a>
+                <a href="https://instagram.com/savanalavras" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">Instagram</a>
+                <a href="#" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold" aria-label="Siga-nos no TikTok">TikTok</a>
+                <a href="mailto:contato@savanaeventos.com.br" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold" aria-label="Envie-nos um email">Email</a>
             </div>
         </div>
     </footer>
@@ -348,76 +375,135 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
     
     <script>
-        // --- PRE-LOADER ---
-        window.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- PRE-LOADER ---
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 500);
-        });
 
-        // --- CABEÇALHO COM FUNDO AO ROLAR ---
-        window.addEventListener('scroll', () => {
+            // --- CABEÇALHO COM FUNDO AO ROLAR ---
             const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
-            } else {
-                header.classList.remove('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
-            }
-        });
-        
-        // --- LÓGICA DO MENU MOBILE ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Esconde o menu mobile ao clicar em um link (para navegação na mesma página)
-        navLinksMobile.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // --- PARTÍCULAS ANIMADAS (tsParticles) ---
-        tsParticles.load("tsparticles", {
-            fpsLimit: 60,
-            particles: {
-                number: { value: 40, density: { enable: true, value_area: 800 }},
-                color: { value: "#E711F0" },
-                shape: { type: "circle" },
-                opacity: {
-                    value: 0.4,
-                    random: true,
-                    anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false }
-                },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#E711F0",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
+                } else {
+                    header.classList.remove('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
                 }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "grab" }, resize: true },
-                modes: { grab: { distance: 140, line_opacity: 0.5 } }
-            },
-            retina_detect: true,
+            });
+            
+            // --- LÓGICA DO MENU MOBILE ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            navLinksMobile.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- PARTÍCULAS ANIMADAS (tsParticles) ---
+            tsParticles.load("tsparticles", {
+                fpsLimit: 60,
+                particles: {
+                    number: { value: 40, density: { enable: true, value_area: 800 }},
+                    color: { value: "#E711F0" },
+                    shape: { type: "circle" },
+                    opacity: {
+                        value: 0.4,
+                        random: true,
+                        anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false }
+                    },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#E711F0",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "grab" }, resize: true },
+                    modes: { grab: { distance: 140, line_opacity: 0.5 } }
+                },
+                retina_detect: true,
+            });
+
+            // --- ANIMAÇÃO DE REVELAR AO ROLAR ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Opcional: remover o observer depois que a animação ocorrer
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.1 // A animação começa quando 10% do elemento está visível
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- FUNCIONALIDADE DO FORMULÁRIO DE CONTATO ---
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const formFeedback = document.getElementById('form-feedback');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Impede o envio padrão do formulário
+
+                // Desabilitar botão e mostrar feedback de envio
+                submitButton.disabled = true;
+                submitButton.textContent = 'Enviando...';
+                formFeedback.textContent = '';
+                formFeedback.classList.remove('text-green-400', 'text-red-400');
+
+                // Simulação de envio para um servidor (dura 2 segundos)
+                setTimeout(() => {
+                    // Simular um resultado de sucesso
+                    const isSuccess = true; // Mude para 'false' para testar o erro
+
+                    if (isSuccess) {
+                        formFeedback.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+                        formFeedback.classList.add('text-green-400');
+                        contactForm.reset(); // Limpa o formulário
+                    } else {
+                        formFeedback.textContent = 'Ocorreu um erro ao enviar a mensagem. Tente novamente.';
+                        formFeedback.classList.add('text-red-400');
+                    }
+                    
+                    // Reabilitar o botão
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Enviar Mensagem';
+
+                     // Limpar a mensagem de feedback após 5 segundos
+                    setTimeout(() => {
+                        formFeedback.textContent = '';
+                    }, 5000);
+
+                }, 2000);
+            });
+
         });
     </script>
 </body>
