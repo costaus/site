@@ -1,434 +1,424 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savana Eventos - Os melhores eventos de Lavras</title>
+    <title>Savana Eventos - Lavras/MG</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Favicon (ícone da aba do navegador) -->
+    <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
     <style>
-        /* Define a fonte Inter como padrão */
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Estilos personalizados e animações */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a; /* Fundo principal escuro */
+            color: #f0f0f0;
         }
+
         /* Cor principal da marca */
         :root {
-            --primary-color: #E711F0;
-            --primary-color-dark: #a30ca8;
+            --cor-principal: #E711F0;
+            --cor-escura: #a00db0;
         }
-        /* Estilos personalizados para gradientes e efeitos */
-        .primary-text { color: var(--primary-color); }
-        .primary-bg { background-color: var(--primary-color); }
-        .primary-bg-dark { background-color: var(--primary-color-dark); }
-        .primary-border { border-color: var(--primary-color); }
-
+        
         /* Efeito de brilho sutil */
-        .glow-button:hover {
-            box-shadow: 0 0 20px var(--primary-color), 0 0 5px var(--primary-color);
+        .glow-effect {
+            transition: all 0.3s ease-in-out;
         }
-         /* Tooltip para botão desativado */
-        .disabled-tooltip { position: relative; cursor: not-allowed; }
-        .disabled-tooltip .tooltip-text {
-            visibility: hidden; width: 200px; background-color: #2d3748; color: #fff; text-align: center;
-            border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 125%; left: 50%;
-            margin-left: -100px; opacity: 0; transition: opacity 0.3s;
+        .glow-effect:hover {
+            box-shadow: 0 0 25px 5px rgba(231, 17, 240, 0.3);
         }
-        .disabled-tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
 
-        /* Animações de Scroll */
-        .reveal {
+        /* Animação do menu de navegação (Desktop) */
+        nav a {
             position: relative;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: 1s all ease;
         }
-        .reveal.active {
-            transform: translateY(0);
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cor-principal);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Fundo de partículas animado */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Estilo do Pre-loader (tela de carregamento) */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0a0a;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 8px solid #444;
+            border-top-color: var(--cor-principal);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Efeito nos cards de evento */
+        .event-card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .event-card-image-wrapper img {
+            transition: transform 0.4s ease;
+        }
+        .event-card:hover .event-card-image-wrapper img {
+            transform: scale(1.05);
+        }
+        .event-card-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(231, 17, 240, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .event-card:hover .event-card-image-wrapper::after {
             opacity: 1;
         }
         
-        /* Estilos do Modal */
-        .modal-backdrop {
-            transition: opacity 0.3s ease;
+        /* Tooltip para botão desabilitado */
+        .disabled-ticket-button {
+            position: relative;
         }
-        .modal-content {
-            transition: transform 0.3s ease;
+        .disabled-ticket-button .tooltip-text {
+            visibility: hidden;
+            width: 160px;
+            background-color: var(--cor-principal);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 0 10px rgba(231, 17, 240, 0.5);
         }
-
-        /* Navbar com fundo no scroll */
-        .scrolled {
-             background-color: rgba(17, 24, 39, 0.95);
-             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .disabled-ticket-button:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Linha de destaque para títulos de seção */
+        .section-title-underline {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--cor-principal);
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--cor-principal);
         }
     </style>
 </head>
-<body class="text-gray-200">
+<body class="overflow-x-hidden">
 
-    <!-- Header / Navbar -->
-    <header id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#">
-                <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-14 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/150x50/111827/E711F0?text=Savana';">
+    <!-- Pre-loader -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Fundo de Partículas -->
+    <div id="tsparticles"></div>
+
+    <!-- Cabeçalho -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- LOGO -->
+            <a href="#home">
+                <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana" class="h-12 transition-transform duration-300 hover:scale-110">
             </a>
-            <!-- Menu Links Desktop -->
-            <ul class="hidden md:flex items-center space-x-8 font-semibold">
-                <li><a href="#home" class="hover:text-[var(--primary-color)] transition-colors duration-300">Início</a></li>
-                <li><a href="#eventos" class="hover:text-[var(--primary-color)] transition-colors duration-300">Eventos</a></li>
-                <li><a href="#galeria" class="hover:text-[var(--primary-color)] transition-colors duration-300">Galeria</a></li>
-                <li><a href="#sobre" class="hover:text-[var(--primary-color)] transition-colors duration-300">Sobre</a></li>
-                <li><a href="#contato" class="hover:text-[var(--primary-color)] transition-colors duration-300">Contato</a></li>
-            </ul>
-             <!-- Botão Mobile -->
-            <button id="mobile-menu-button" class="md:hidden text-2xl z-50">
-                <i class="fas fa-bars"></i>
-            </button>
-             <!-- Menu Mobile -->
-            <div id="mobile-menu" class="hidden md:hidden absolute top-0 right-0 w-full h-screen bg-gray-900">
-                <ul class="flex flex-col items-center justify-center h-full space-y-8 font-semibold text-xl">
-                    <li><a href="#home" class="mobile-link hover:text-[var(--primary-color)] transition-colors duration-300">Início</a></li>
-                    <li><a href="#eventos" class="mobile-link hover:text-[var(--primary-color)] transition-colors duration-300">Eventos</a></li>
-                    <li><a href="#galeria" class="mobile-link hover:text-[var(--primary-color)] transition-colors duration-300">Galeria</a></li>
-                    <li><a href="#sobre" class="mobile-link hover:text-[var(--primary-color)] transition-colors duration-300">Sobre</a></li>
-                    <li><a href="#contato" class="mobile-link hover:text-[var(--primary-color)] transition-colors duration-300">Contato</a></li>
-                </ul>
+            
+            <!-- MENU DE NAVEGAÇÃO (Desktop) -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#eventos" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Eventos</a>
+                <a href="#sobre" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Quem Somos</a>
+                <a href="#contato" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Contato</a>
+            </nav>
+
+            <!-- BOTÃO MENU MOBILE -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h10"></path>
+                    </svg>
+                </button>
             </div>
-        </nav>
+        </div>
+        <!-- MENU MOBILE (Dropdown) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
+            <a href="#eventos" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Eventos</a>
+            <a href="#sobre" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Quem Somos</a>
+            <a href="#contato" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Contato</a>
+        </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 1)), url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop');">
-            <div class="text-center container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white tracking-wider reveal">
-                    A melhor <span class="primary-text">vibe</span> universitária
-                </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">
-                    Savana Eventos: transformando noites em memórias inesquecíveis no coração de Lavras.
-                </p>
-                <div class="mt-8 reveal" style="transition-delay: 400ms;">
-                    <button class="disabled-tooltip primary-bg text-white font-bold py-4 px-10 rounded-full uppercase tracking-widest transition-transform duration-300 transform opacity-60 cursor-not-allowed">
-                        Comprar Ingressos
-                        <span class="tooltip-text">Indisponível no momento</span>
-                    </button>
-                </div>
-            </div>
+        <!-- Seção Home (Banner) -->
+        <!-- O padding-top (pt-24) foi adicionado para evitar que o conteúdo fique atrás do header fixo -->
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-24">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase" style="text-shadow: 0px 0px 15px rgba(231, 17, 240, 0.4);">
+                <span class="text-white">SAVANA</span>
+                <span style="color: var(--cor-principal);">EVENTOS</span>
+            </h1>
+            <p class="text-xl md:text-2xl mt-4 font-light text-gray-300">A sua nova experiência de festa em Lavras - MG.</p>
+            <a href="#eventos" class="mt-12 bg-transparent border-2 border-[var(--cor-principal)] text-[var(--cor-principal)] font-bold py-3 px-10 rounded-full uppercase tracking-wider transition-all duration-300 hover:bg-[var(--cor-principal)] hover:text-white hover:scale-105 glow-effect">
+                Ver Próximos Eventos
+            </a>
         </section>
 
-        <!-- Eventos Section -->
-        <section id="eventos" class="py-20 bg-gray-900">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Próximos <span class="primary-text">Eventos</span></h2>
+        <!-- Seção Próximos Eventos -->
+        <section id="eventos" class="py-20 md:py-32 bg-black bg-opacity-30">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 section-title-underline">Próximos <span style="color: var(--cor-principal);">Eventos</span></h2>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <!-- Event Card 1 com Countdown -->
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[var(--primary-color)]/20 hover:-translate-y-2 transition-all duration-300 ease-in-out group reveal">
-                        <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1519750098196-e2339617c093?q=80&w=1974&auto=format&fit=crop" alt="Imagem do evento Neon Party" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/ffffff?text=Evento';">
+                    <!-- CARD DE EVENTO EXEMPLO 1 -->
+                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect">
+                        <div class="event-card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop" alt="Imagem de festa" class="w-full h-56 object-cover">
+                        </div>
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2">Neon Party</h3>
-                            <div class="mb-4 text-center">
-                                <p class="text-gray-400 text-sm mb-2">Começa em:</p>
-                                <div id="countdown" class="grid grid-cols-4 gap-2 text-center">
-                                    <div><span id="days" class="text-2xl font-bold primary-text">00</span><p class="text-xs text-gray-400">Dias</p></div>
-                                    <div><span id="hours" class="text-2xl font-bold primary-text">00</span><p class="text-xs text-gray-400">Horas</p></div>
-                                    <div><span id="minutes" class="text-2xl font-bold primary-text">00</span><p class="text-xs text-gray-400">Min</p></div>
-                                    <div><span id="seconds" class="text-2xl font-bold primary-text">00</span><p class="text-xs text-gray-400">Seg</p></div>
-                                </div>
+                            <h3 class="text-2xl font-bold mb-2">SAVANA FEST - EDIÇÃO NEON</h3>
+                            <p class="text-[var(--cor-principal)] font-semibold mb-4">EM BREVE | Local a definir</p>
+                            <p class="text-gray-400 mb-6 h-24">Prepare-se para brilhar na noite mais colorida do ano. Muito funk, eletrônico e surpresas.</p>
+                            <div class="disabled-ticket-button">
+                                <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
+                                    Comprar Ingresso
+                                </button>
+                                <span class="tooltip-text">Vendas em breve!</span>
                             </div>
-                            <p class="text-gray-300 mb-6">Prepare-se para brilhar na festa mais colorida do ano. Tinta neon, luz negra e os melhores DJs.</p>
-                            <button data-modal-target="modal-1" class="w-full inline-block primary-bg hover:primary-bg-dark text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 group-hover:scale-105 glow-button">Saiba Mais</button>
+                        </div>
+                    </div>
+                    
+                    <!-- CARD DE EVENTO EXEMPLO 2 -->
+                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect">
+                        <div class="event-card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop" alt="Imagem de festa com DJ" class="w-full h-56 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">CALOURADA INSANA</h3>
+                            <p class="text-[var(--cor-principal)] font-semibold mb-4">AGUARDEM | República Savana</p>
+                            <p class="text-gray-400 mb-6 h-24">A recepção de calouros que vai parar Lavras. Open bar e as melhores atrações para começar o semestre com o pé direito.</p>
+                            <div class="disabled-ticket-button">
+                                <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
+                                    Comprar Ingresso
+                                </button>
+                                <span class="tooltip-text">Vendas em breve!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CARD DE EVENTO EXEMPLO 3 -->
+                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect">
+                        <div class="event-card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop" alt="Imagem de festa na piscina" class="w-full h-56 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">SUNSET SAVANA</h3>
+                            <p class="text-[var(--cor-principal)] font-semibold mb-4">NOVEMBRO | Sítio Paraíso</p>
+                            <p class="text-gray-400 mb-6 h-24">O melhor do pagode e eletrônico para curtir o pôr do sol em um lugar incrível com uma vista de tirar o fôlego.</p>
+                            <div class="disabled-ticket-button">
+                                <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
+                                    Comprar Ingresso
+                                </button>
+                                <span class="tooltip-text">Vendas em breve!</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event Card 2 -->
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[var(--primary-color)]/20 hover:-translate-y-2 transition-all duration-300 ease-in-out group reveal" style="transition-delay: 200ms;">
-                        <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1629814285802-b58635e80209?q=80&w=1974&auto=format&fit=crop" alt="Imagem do evento Sunset Eletrônico" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/ffffff?text=Evento';">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2">Sunset Eletrônico</h3>
-                             <p class="text-gray-400 mb-4"><i class="fas fa-calendar-alt mr-2 primary-text"></i>18 de Agosto, 2024</p>
-                            <p class="text-gray-300 mb-6">Curta o pôr do sol ao som do melhor da música eletrônica em um local paradisíaco.</p>
-                            <button data-modal-target="modal-2" class="w-full inline-block primary-bg hover:primary-bg-dark text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 group-hover:scale-105 glow-button">Saiba Mais</button>
-                        </div>
-                    </div>
-
-                    <!-- Event Card 3 -->
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-[var(--primary-color)]/20 hover:-translate-y-2 transition-all duration-300 ease-in-out group reveal" style="transition-delay: 400ms;">
-                        <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1587740922312-62881b2723c7?q=80&w=2070&auto=format&fit=crop" alt="Imagem do evento Festival Sertanejo" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/ffffff?text=Evento';">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold mb-2">Festival Sertanejo</h3>
-                            <p class="text-gray-400 mb-4"><i class="fas fa-calendar-alt mr-2 primary-text"></i>05 de Setembro, 2024</p>
-                            <p class="text-gray-300 mb-6">As melhores duplas sertanejas da região reunidas para uma noite de muita música e animação.</p>
-                           <button data-modal-target="modal-3" class="w-full inline-block primary-bg hover:primary-bg-dark text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 group-hover:scale-105 glow-button">Saiba Mais</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Galeria Section -->
-        <section id="galeria" class="py-20 bg-gray-800">
-            <div class="container mx-auto px-6">
-                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">Nossos <span class="primary-text">Momentos</span></h2>
-                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="grid gap-4">
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1549452026-c4a238ce5973?q=80&w=1964&auto=format&fit=crop" alt=""></div>
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1563212359-64558248b108?q=80&w=1974&auto=format&fit=crop" alt=""></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop" alt=""></div>
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" alt=""></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop" alt=""></div>
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop" alt=""></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1582732293453-3323a105b497?q=80&w=2070&auto=format&fit=crop" alt=""></div>
-                        <div class="reveal"><img class="gallery-item h-auto max-w-full rounded-lg cursor-pointer hover:opacity-80 transition-opacity" src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=1962&auto=format&fit=crop" alt=""></div>
-                    </div>
-                </div>
+        <!-- Seção Quem Somos -->
+        <section id="sobre" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 section-title-underline">Quem <span style="color: var(--cor-principal);">Somos</span></h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    A Savana nasceu da paixão por criar momentos inesquecíveis. Somos mais do que uma empresa de eventos, somos um movimento que busca redefinir a noite universitária em Lavras. Com festas ousadas, produções impecáveis e uma energia contagiante, nosso objetivo é um só: proporcionar a melhor experiência da sua vida. Bem-vindo à selva de emoções. Bem-vindo à Savana!
+                </p>
             </div>
-        </section>
-
-        <!-- Sobre Nós Section -->
-        <section id="sobre" class="py-20 bg-gray-900">
-             <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 reveal">
-                    <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana em destaque" class="max-w-xs mx-auto rounded-lg" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1f2937/E711F0?text=Savana';">
-                </div>
-                <div class="md:w-1/2 text-center md:text-left reveal" style="transition-delay: 200ms;">
-                     <h2 class="text-3xl md:text-4xl font-bold mb-4">Quem <span class="primary-text">Somos</span></h2>
-                     <p class="text-gray-300 leading-relaxed">
-                        A Savana Eventos nasceu da paixão por música e da vontade de criar experiências únicas para o público universitário de Lavras. Nossa missão é simples: organizar os melhores e mais seguros eventos, onde a única preocupação é se divertir. Com uma equipe dedicada e os melhores parceiros, estamos sempre inovando para trazer festas que ficam na história.
-                     </p>
-                </div>
-             </div>
         </section>
         
-        <!-- Contato Section -->
-        <section id="contato" class="py-20 bg-gray-800">
-            <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold mb-4 reveal">Fale <span class="primary-text">Conosco</span></h2>
-                 <p class="text-gray-400 mb-8 max-w-2xl mx-auto reveal">Tem alguma dúvida, sugestão ou quer ser nosso parceiro? Entre em contato pelas nossas redes sociais.</p>
-                 <div class="flex justify-center space-x-6 reveal">
-                    <a href="#" class="text-4xl hover:text-[var(--primary-color)] transition-all duration-300 transform hover:scale-110"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-4xl hover:text-[var(--primary-color)] transition-all duration-300 transform hover:scale-110"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-4xl hover:text-[var(--primary-color)] transition-all duration-300 transform hover:scale-110"><i class="fab fa-facebook"></i></a>
-                 </div>
+        <!-- Seção Contato -->
+        <section id="contato" class="py-20 md:py-32 bg-black bg-opacity-30">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 text-center section-title-underline">Fale <span style="color: var(--cor-principal);">Conosco</span></h2>
+                <div class="max-w-xl mx-auto">
+                    <form action="#" method="POST">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Nome</label>
+                            <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-300 text-sm font-bold mb-2">E-mail</label>
+                            <input type="email" id="email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="seu.email@exemplo.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Escreva sua dúvida, sugestão ou proposta aqui..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect">
+                                Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-black py-6">
-        <div class="container mx-auto px-6 text-center text-gray-500">
-            <p>&copy; 2024 Savana Eventos. Todos os direitos reservados.</p>
-            <p>Criado para agitar a Cidade Universitária de Lavras, MG.</p>
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana" class="h-16 mx-auto mb-4">
+            <p class="text-lg font-bold">SAVANA EVENTOS</p>
+            <p class="mb-4">&copy; 2024. Todos os direitos reservados.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <!-- Links para redes sociais - Altere aqui -->
+                <a href="https://instagram.com/savanalavras" target="_blank" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">Instagram</a>
+                <a href="#" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">TikTok</a>
+                <a href="mailto:contato@savanaeventos.com.br" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">Email</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Modals -->
-    <!-- Modal 1 -->
-    <div id="modal-1" class="modal-backdrop fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0">
-        <div class="modal-content bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-6 relative transform scale-95">
-            <h3 class="text-2xl font-bold mb-4 primary-text">Neon Party</h3>
-            <p class="mb-4">Atrações: DJ Arana, MC Paiva e muito mais!</p>
-            <p class="mb-4">Prepare sua roupa branca e venha brilhar com as tintas neon que brilhando na luz negra. Serão distribuídas canetas fluorescentes para todos na entrada.</p>
-            <p class="font-bold">Local: Expolavras</p>
-            <button class="modal-close-button absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
-        </div>
-    </div>
-    <!-- Modal 2 -->
-    <div id="modal-2" class="modal-backdrop fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0">
-         <div class="modal-content bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-6 relative transform scale-95">
-            <h3 class="text-2xl font-bold mb-4 primary-text">Sunset Eletrônico</h3>
-            <p class="mb-4">Atrações: Vintage Culture, Cat Dealers e Groove Delight.</p>
-            <p class="mb-4">Uma tarde inesquecível ao som do melhor da música eletrônica, com um pôr do sol de tirar o fôlego. Estrutura completa com praça de alimentação e áreas de descanso.</p>
-            <p class="font-bold">Local: Espaço aberto da UFLA</p>
-            <button class="modal-close-button absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
-        </div>
-    </div>
-    <!-- Modal 3 -->
-    <div id="modal-3" class="modal-backdrop fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0">
-         <div class="modal-content bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-6 relative transform scale-95">
-            <h3 class="text-2xl font-bold mb-4 primary-text">Festival Sertanejo</h3>
-            <p class="mb-4">Atrações: Zé Neto & Cristiano, Hugo & Guilherme e Maiara & Maraisa.</p>
-            <p class="mb-4">A maior festa sertaneja da região! Prepare a bota e o chapéu para cantar e dançar a noite toda com os grandes nomes do sertanejo nacional.</p>
-            <p class="font-bold">Local: Parque de Exposições</p>
-            <button class="modal-close-button absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
-        </div>
-    </div>
+    <!-- Scripts JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
     
-    <!-- Lightbox Modal for Gallery -->
-    <div id="lightbox" class="modal-backdrop fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-50 hidden opacity-0">
-        <img id="lightbox-img" src="" alt="Imagem da galeria ampliada" class="max-w-full max-h-full rounded-lg">
-        <button id="lightbox-close" class="absolute top-6 right-8 text-4xl text-white hover:text-gray-300">&times;</button>
-    </div>
-
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        
-        // --- Navbar Scroll Effect ---
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled', 'backdrop-blur-sm');
-            } else {
-                navbar.classList.remove('scrolled', 'backdrop-blur-sm');
-            }
+        // --- PRE-LOADER ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
         });
 
-        // --- Mobile Menu Toggle ---
+        // --- CABEÇALHO COM FUNDO AO ROLAR ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
+            } else {
+                header.classList.remove('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
+            }
+        });
+        
+        // --- LÓGICA DO MENU MOBILE ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuIcon = mobileMenuButton.querySelector('i');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenuIcon.classList.remove('fa-times');
-                mobileMenuIcon.classList.add('fa-bars');
-            } else {
-                mobileMenuIcon.classList.remove('fa-bars');
-                mobileMenuIcon.classList.add('fa-times');
-            }
         });
-
-        mobileLinks.forEach(link => {
+        
+        // Esconde o menu mobile ao clicar em um link (para navegação na mesma página)
+        navLinksMobile.forEach(link => {
             link.addEventListener('click', () => {
-                 mobileMenu.classList.add('hidden');
-                 mobileMenuIcon.classList.remove('fa-times');
-                 mobileMenuIcon.classList.add('fa-bars');
+                mobileMenu.classList.add('hidden');
             });
         });
 
-        // --- Countdown Timer ---
-        // Altere a data aqui para o seu evento
-        const countdownDate = new Date("Jul 25, 2024 22:00:00").getTime();
-
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<p class='col-span-4 text-lg font-bold'>EVENTO ENCERRADO</p>";
-            }
-        }, 1000);
-
-        // --- Scroll Reveal Animation ---
-        const reveal = () => {
-            const reveals = document.querySelectorAll('.reveal');
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 150; // Distância para ativar a animação
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                } else {
-                    // Opcional: remover a classe para re-animar ao rolar para cima
-                    // reveals[i].classList.remove('active');
+        // --- PARTÍCULAS ANIMADAS (tsParticles) ---
+        tsParticles.load("tsparticles", {
+            fpsLimit: 60,
+            particles: {
+                number: { value: 40, density: { enable: true, value_area: 800 }},
+                color: { value: "#E711F0" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.4,
+                    random: true,
+                    anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false }
+                },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#E711F0",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
                 }
-            }
-        };
-        window.addEventListener('scroll', reveal);
-        reveal(); // Revela elementos já visíveis no carregamento
-
-        // --- Modal Logic ---
-        const openModalButtons = document.querySelectorAll('[data-modal-target]');
-        const closeModalButtons = document.querySelectorAll('.modal-close-button');
-
-        const toggleModal = (modal) => {
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                setTimeout(() => {
-                    modal.classList.remove('opacity-0');
-                    modal.querySelector('.modal-content').classList.remove('scale-95');
-                }, 10);
-            } else {
-                modal.classList.add('opacity-0');
-                modal.querySelector('.modal-content').classList.add('scale-95');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                }, 300);
-            }
-        };
-
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = document.getElementById(button.dataset.modalTarget);
-                toggleModal(modal);
-            });
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, resize: true },
+                modes: { grab: { distance: 140, line_opacity: 0.5 } }
+            },
+            retina_detect: true,
         });
-
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = button.closest('.modal-backdrop');
-                toggleModal(modal);
-            });
-        });
-
-        // Fecha o modal clicando fora
-        document.querySelectorAll('.modal-backdrop').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    toggleModal(modal);
-                }
-            });
-        });
-
-
-        // --- Lightbox Gallery Logic ---
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                lightboxImg.src = item.src;
-                lightbox.classList.remove('hidden');
-                setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
-            });
-        });
-
-        const closeLightbox = () => {
-            lightbox.classList.add('opacity-0');
-            setTimeout(() => lightbox.classList.add('hidden'), 300);
-        };
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-    });
     </script>
 </body>
 </html>
