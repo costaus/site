@@ -331,7 +331,8 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 text-center section-title-underline reveal">Fale <span style="color: var(--cor-principal);">Conosco</span></h2>
                 <div class="max-w-xl mx-auto reveal">
-                    <form id="contact-form">
+                    <!-- O formulário agora aponta para o Formspree. Lembre-se de trocar {form_id} pelo seu ID -->
+                    <form action="https://formspree.io/f/{form_id}" method="POST">
                         <div class="mb-6">
                             <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Nome</label>
                             <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Seu nome completo" required>
@@ -342,16 +343,15 @@
                         </div>
                         <div class="mb-6">
                             <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Mensagem</label>
+                            <!-- Adicionado o atributo 'name' para o Formspree funcionar -->
                             <textarea id="message" name="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Escreva sua dúvida, sugestão ou proposta aqui..." required></textarea>
                         </div>
                         <div class="text-center">
-                            <button type="submit" id="submit-button" class="w-full md:w-auto bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect transition-all duration-300">
+                            <button type="submit" class="w-full md:w-auto bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect transition-all duration-300">
                                 Enviar Mensagem
                             </button>
                         </div>
                     </form>
-                    <!-- Mensagem de feedback do formulário -->
-                    <div id="form-feedback" class="mt-6 text-center text-lg font-semibold"></div>
                 </div>
             </div>
         </section>
@@ -452,59 +452,21 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // Opcional: remover o observer depois que a animação ocorrer
-                        // observer.unobserve(entry.target); 
                     }
                 });
             }, {
-                threshold: 0.1 // A animação começa quando 10% do elemento está visível
+                threshold: 0.1
             });
 
             revealElements.forEach(el => {
                 observer.observe(el);
             });
 
-            // --- FUNCIONALIDADE DO FORMULÁRIO DE CONTATO ---
-            const contactForm = document.getElementById('contact-form');
-            const submitButton = document.getElementById('submit-button');
-            const formFeedback = document.getElementById('form-feedback');
-
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Impede o envio padrão do formulário
-
-                // Desabilitar botão e mostrar feedback de envio
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
-                formFeedback.textContent = '';
-                formFeedback.classList.remove('text-green-400', 'text-red-400');
-
-                // Simulação de envio para um servidor (dura 2 segundos)
-                setTimeout(() => {
-                    // Simular um resultado de sucesso
-                    const isSuccess = true; // Mude para 'false' para testar o erro
-
-                    if (isSuccess) {
-                        formFeedback.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
-                        formFeedback.classList.add('text-green-400');
-                        contactForm.reset(); // Limpa o formulário
-                    } else {
-                        formFeedback.textContent = 'Ocorreu um erro ao enviar a mensagem. Tente novamente.';
-                        formFeedback.classList.add('text-red-400');
-                    }
-                    
-                    // Reabilitar o botão
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Enviar Mensagem';
-
-                     // Limpar a mensagem de feedback após 5 segundos
-                    setTimeout(() => {
-                        formFeedback.textContent = '';
-                    }, 5000);
-
-                }, 2000);
-            });
+            // O SCRIPT DO FORMULÁRIO FOI REMOVIDO DAQUI
+            // O Formspree cuidará do envio automaticamente.
 
         });
     </script>
 </body>
 </html>
+
