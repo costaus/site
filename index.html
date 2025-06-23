@@ -46,7 +46,7 @@
             align-items: center;
             min-height: 100vh; /* Ocupa a altura total da viewport */
             margin: 0;
-            overflow: hidden; /* Evita scroll desnecessário */
+            /* REMOVIDO: overflow: hidden; para permitir a rolagem */
         }
 
         /* Cor principal da marca */
@@ -79,6 +79,45 @@
             height: 100%;
             z-index: -1;
         }
+
+        /* Estilo para o temporizador */
+        .countdown-item {
+            background-color: rgba(231, 17, 240, 0.2); /* Fundo sutil */
+            border-radius: 8px;
+            padding: 8px 12px; /* Reduzido o padding */
+            margin: 0 4px; /* Reduzido o margin horizontal */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 65px; /* Ajustado o min-width */
+            box-shadow: 0 0 10px rgba(231, 17, 240, 0.3); /* Brilho */
+        }
+
+        .countdown-value {
+            font-size: 2rem; /* Ajustado o tamanho da fonte */
+            font-weight: 700;
+            color: var(--cor-principal);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem; /* Ajustado o tamanho da fonte */
+            color: #ccc;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        /* Responsividade para o temporizador */
+        @media (min-width: 768px) {
+            .countdown-value {
+                font-size: 3rem; /* Tamanho maior para telas maiores */
+            }
+            .countdown-item {
+                min-width: 90px; /* Min-width maior para telas maiores */
+                padding: 10px 15px; /* Padding maior para telas maiores */
+                margin: 0 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -97,6 +136,28 @@
             <p class="text-4xl md:text-5xl font-semibold text-white mt-4">
                 SETEMBRO 2025
             </p>
+
+            <!-- --- Temporizador de Contagem Regressiva --- -->
+            <div id="countdown" class="flex justify-center items-center mt-8 mb-8"> <!-- Ajustado o mt-12 para mt-8 -->
+                <div class="countdown-item">
+                    <span id="days" class="countdown-value">00</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-value">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-value">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-value">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+            <!-- --------------------------------------- -->
+
             <p class="text-base md:text-lg text-gray-400 italic mt-8 max-w-lg mx-auto">
                 Venda de ingressos será liberada em breve!
             </p>
@@ -144,6 +205,39 @@
                 },
                 retina_detect: true,
             });
+
+            // Lógica do Temporizador
+            const countdownDate = new Date("August 1, 2025 00:00:00").getTime(); // 1º de Agosto de 2025
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                // Cálculos para dias, horas, minutos e segundos
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Atualiza os elementos HTML
+                document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+                document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+                // Se a contagem regressiva terminou
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-white'>VENDAS LIBERADAS!</p>";
+                    document.querySelector('.italic').innerHTML = "Garanta já o seu ingresso!";
+                }
+            };
+
+            // Atualiza a contagem regressiva a cada 1 segundo
+            const countdownInterval = setInterval(updateCountdown, 1000);
+
+            // Chama a função uma vez imediatamente para evitar atraso no primeiro display
+            updateCountdown();
         });
     </script>
 </body>
