@@ -42,7 +42,7 @@
             color: #f0f0f0; /* Cor do texto principal */
             display: flex;
             flex-direction: column; /* Para empilhar logo e texto */
-            /* REMOVIDO: justify-content: center; para permitir a logo mais ao topo */
+            /* REMOVIDO: justify-content: center; para que o conteúdo comece do topo */
             align-items: center; /* Centraliza horizontalmente */
             min-height: 100vh; /* Ocupa a altura total da viewport */
             margin: 0;
@@ -125,20 +125,20 @@
     <!-- Fundo de Partículas -->
     <div id="tsparticles"></div>
 
-    <main class="text-center px-4 pt-16"> <!-- Adicionado pt-16 para empurrar o conteúdo para baixo do topo -->
-        <div class="animated-content">
-            <!-- LOGO DA SAVANA -->
-            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-32 lg:h-40 mx-auto mb-8">
+    <main class="text-center px-4 py-8"> <!-- Adicionado py-8 para dar um pouco de respiro em cima e embaixo do conteúdo principal -->
+        <div class="animated-content flex flex-col items-center">
+            <!-- LOGO DA SAVANA - Ajustado mt para posicionamento mais no topo -->
+            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-32 lg:h-40 mx-auto mt-8 mb-8">
             
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase" style="color: var(--cor-principal); text-shadow: 0px 0px 20px rgba(231, 17, 240, 0.6);">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase mt-4" style="color: var(--cor-principal); text-shadow: 0px 0px 20px rgba(231, 17, 240, 0.6);">
                 EM BREVE
             </h1>
             <p class="text-4xl md:text-5xl font-semibold text-white mt-4 mb-8">
                 SETEMBRO 2025
             </p>
 
-            <!-- Novo texto acima do temporizador - Ajustes de estilo aplicados -->
-            <p id="countdown-message" class="text-base md:text-lg text-gray-300 font-normal mt-4 mb-4">
+            <!-- Texto acima do temporizador - Estilo ajustado para ser menos destacado -->
+            <p id="countdown-message" class="text-base md:text-lg text-gray-400 font-normal mt-8 mb-4">
                 Prepare-se! As vendas começam em:
             </p>
             <!-- --- Temporizador de Contagem Regressiva --- -->
