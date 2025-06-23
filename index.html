@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savana Eventos - A sua nova experiência de festa em Lavras/MG</title>
+    <title>Savana Eventos - Em Breve</title>
     
     <!-- Meta Tags Essenciais para SEO -->
-    <meta name="description" content="Savana Eventos - As melhores e mais inesquecíveis festas universitárias em Lavras, MG. Confira nossa agenda, compre ingressos e faça o divertido 'Teste de Feiúra' fictício!">
-    <meta name="keywords" content="eventos, festas, Lavras, universitário, Savana, balada, show, música, teste de feiúra, divertido">
+    <meta name="description" content="Savana Eventos - Em breve, as melhores festas universitárias em Lavras, MG. Fique ligado para o lançamento dos ingressos!">
+    <meta name="keywords" content="eventos, festas, Lavras, universitário, Savana, balada, show, música, em breve">
     <meta name="author" content="Savana Eventos">
 
     <!-- Open Graph / Facebook Meta Tags -->
-    <meta property="og:title" content="Savana Eventos - A sua nova experiência de festa">
-    <meta property="og:description" content="As melhores e mais inesquecíveis festas universitárias em Lavras, MG.">
+    <meta property="og:title" content="Savana Eventos - Em Breve">
+    <meta property="og:description" content="As melhores e mais inesquecíveis festas universitárias em Lavras, MG. Em breve, a venda de ingressos será liberada!">
     <meta property="og:image" content="https://iili.io/FCvz5DQ.png">
     <meta property="og:url" content="URL_DO_SEU_SITE_AQUI">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Savana Eventos - A sua nova experiência de festa">
-    <meta name="twitter:description" content="As melhores e mais inesquecíveis festas universitárias em Lavras, MG.">
+    <meta name="twitter:title" content="Savana Eventos - Em Breve">
+    <meta name="twitter:description" content="As melhores e mais inesquecíveis festas universitárias em Lavras, MG. Em breve, a venda de ingressos será liberada!">
     <meta name="twitter:image" content="https://iili.io/FCvz5DQ.png">
 
     <!-- Tailwind CSS CDN -->
@@ -35,46 +35,39 @@
     <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
     <style>
-        /* Estilos personalizados e animações */
+        /* Estilos base do corpo */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0a0a0a;
-            color: #f0f0f0;
+            background-color: #0a0a0a; /* Fundo escuro */
+            color: #f0f0f0; /* Cor do texto principal */
+            display: flex;
+            flex-direction: column; /* Para empilhar logo e texto */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ocupa a altura total da viewport */
+            margin: 0;
+            overflow: hidden; /* Evita scroll desnecessário */
         }
 
         /* Cor principal da marca */
         :root {
             --cor-principal: #E711F0;
-            --cor-escura: #a00db0;
-        }
-        
-        /* Efeito de brilho sutil */
-        .glow-effect {
-            transition: all 0.3s ease-in-out;
-        }
-        .glow-effect:hover {
-            box-shadow: 0 0 25px 5px rgba(231, 17, 240, 0.3);
         }
 
-        /* Animação do menu de navegação (Desktop) */
-        nav a {
-            position: relative;
+        /* Animação para o texto principal */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--cor-principal);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-        nav a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
+
+        .animated-content {
+            animation: fadeInScale 1s ease-out forwards;
         }
 
         /* Fundo de partículas animado */
@@ -86,546 +79,41 @@
             height: 100%;
             z-index: -1;
         }
-
-        /* Estilo do Pre-loader */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #0a0a0a;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out;
-        }
-        .spinner {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: 8px solid #444;
-            border-top-color: var(--cor-principal);
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        /* Efeito nos cards de evento */
-        .event-card-image-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-        .event-card-image-wrapper img {
-            transition: transform 0.4s ease;
-        }
-        .event-card:hover .event-card-image-wrapper img {
-            transform: scale(1.05);
-        }
-        .event-card-image-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(231, 17, 240, 0.4), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .event-card:hover .event-card-image-wrapper::after {
-            opacity: 1;
-        }
-        
-        /* Tooltip para botão desabilitado */
-        .disabled-ticket-button {
-            position: relative;
-        }
-        .disabled-ticket-button .tooltip-text {
-            visibility: hidden;
-            width: 160px;
-            background-color: var(--cor-principal);
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -80px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            box-shadow: 0 0 10px rgba(231, 17, 240, 0.5);
-        }
-        .disabled-ticket-button:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        /* Linha de destaque para títulos de seção */
-        .section-title-underline {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .section-title-underline::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--cor-principal);
-            border-radius: 2px;
-            box-shadow: 0 0 15px var(--cor-principal);
-        }
-
-        /* Animação de Revelar ao Rolar (Scroll Reveal) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .modal.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transform: translateY(-50px);
-            transition: transform 0.3s ease;
-        }
-        .modal.open .modal-content {
-            transform: translateY(0);
-        }
-        .modal-content h3 {
-            color: var(--cor-principal);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        .modal-content p {
-            color: #ccc;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-        .modal-close-button {
-            background-color: var(--cor-principal);
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .modal-close-button:hover {
-            background-color: var(--cor-escura);
-            transform: scale(1.05);
-        }
-
-        /* Estilos específicos do Teste de Feiúra */
-        #scanner-area {
-            position: relative;
-            width: 320px; /* Ajustado para melhor proporção de vídeo */
-            height: 240px; /* Ajustado para melhor proporção de vídeo */
-            border: 3px solid var(--cor-principal);
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem auto;
-        }
-
-        #camera-feed {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Garante que o vídeo preencha a área */
-            transform: scaleX(-1); /* Espelha o vídeo para selfie */
-            display: none; /* Escondido por padrão */
-        }
-
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, transparent, var(--cor-principal), transparent);
-            box-shadow: 0 0 15px var(--cor-principal);
-            animation: scan 2s infinite linear;
-            display: none; /* Escondido por padrão */
-            z-index: 10; /* Garante que a linha de scan fique acima do vídeo */
-        }
-
-        @keyframes scan {
-            0% { top: 0; }
-            50% { top: calc(100% - 5px); }
-            100% { top: 0; }
-        }
-
-        .result-message-test { /* Renomeado para evitar conflito com .result-message do modal */
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 2rem;
-            color: white;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .result-message-test.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .progress-bar-container {
-            width: 80%;
-            height: 15px;
-            background-color: #333;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 1.5rem auto;
-            display: none; /* Escondido por padrão */
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background-color: var(--cor-principal);
-            border-radius: 10px;
-            transition: width 0.3s ease-out;
-        }
-
-        /* Estilo para a mensagem de "Ganhe um Ingresso" */
-        #ticket-info {
-            background-color: rgba(231, 17, 240, 0.15); /* Cor principal com opacidade */
-            border: 1px dashed var(--cor-principal);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            color: #ddd;
-            display: none; /* Escondido inicialmente */
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #ticket-info.visible {
-            display: block;
-        }
     </style>
 </head>
-<body class="overflow-x-hidden">
-
-    <!-- Pre-loader -->
-    <div id="loader">
-        <div class="spinner"></div>
-    </div>
+<body>
 
     <!-- Fundo de Partículas -->
     <div id="tsparticles"></div>
 
-    <!-- Cabeçalho -->
-    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- LOGO -->
-            <a href="#home">
-                <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-12 transition-transform duration-300 hover:scale-110">
-            </a>
+    <main class="text-center px-4">
+        <div class="animated-content">
+            <!-- LOGO DA SAVANA -->
+            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-32 lg:h-40 mx-auto mb-8">
             
-            <!-- MENU DE NAVEGAÇÃO (Desktop) -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#eventos" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Eventos</a>
-                <a href="#sobre" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Quem Somos</a>
-                <a href="#ugliness-test" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Teste de Feiúra</a>
-                <a href="#contato" class="text-lg font-semibold uppercase tracking-wider transition-colors duration-300 hover:text-[var(--cor-principal)]">Contato</a>
-            </nav>
-
-            <!-- BOTÃO MENU MOBILE -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu de navegação">
-                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h10"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <!-- MENU MOBILE (Dropdown) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
-            <a href="#eventos" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Eventos</a>
-            <a href="#sobre" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Quem Somos</a>
-            <a href="#ugliness-test" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Teste de Feiúra</a>
-            <a href="#contato" class="nav-link-mobile block text-center text-lg py-4 text-white hover:bg-[var(--cor-principal)] transition-colors duration-300">Contato</a>
-        </div>
-    </header>
-
-    <main>
-        <!-- Seção Home (Banner) -->
-        <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-24">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase reveal" style="text-shadow: 0px 0px 15px rgba(231, 17, 240, 0.4);">
-                <span class="text-white">SAVANA</span>
-                <span style="color: var(--cor-principal);">EVENTOS</span>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase" style="color: var(--cor-principal); text-shadow: 0px 0px 20px rgba(231, 17, 240, 0.6);">
+                EM BREVE
             </h1>
-            <p class="text-xl md:text-2xl mt-4 font-light text-gray-300 reveal" style="transition-delay: 150ms;">A sua nova experiência de festa em Lavras - MG.</p>
-            <a href="#eventos" class="mt-12 bg-transparent border-2 border-[var(--cor-principal)] text-[var(--cor-principal)] font-bold py-3 px-10 rounded-full uppercase tracking-wider transition-all duration-300 hover:bg-[var(--cor-principal)] hover:text-white hover:scale-105 glow-effect reveal" style="transition-delay: 300ms;">
-                Ver Próximos Eventos
-            </a>
-        </section>
-
-        <!-- Seção Teste de Feiúra (Fictício) -->
-        <section id="ugliness-test" class="py-20 md:py-32 bg-black bg-opacity-30">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 section-title-underline reveal">
-                    <span class="text-white">Teste de</span> <span style="color: var(--cor-principal);">Charme Savana</span>
-                </h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed reveal">
-                    Curioso(a) para saber sua porcentagem de charme para a próxima festa Savana? 
-                    Deixe nosso super scanner fictício analisar seu rosto e revelar a verdade! 
-                    <br>
-                </p>
-
-                <div id="ticket-info" class="mt-8 text-center reveal">
-                    <p>Ao iniciar o escaneamento, se o seu resultado for <strong>75% ou mais de "charme"</strong>, você pode GANHAR um ingresso para nosso próximo evento! 😉</p>
-                </div>
-
-                <div id="scanner-area" class="reveal" style="transition-delay: 300ms;">
-                    <video id="camera-feed" playsinline autoplay muted class="absolute inset-0 w-full h-full object-cover"></video>
-                    <div class="scan-line" id="scan-line"></div>
-                    <p id="scanner-text" class="text-gray-500 text-lg z-20">Clique para iniciar e permita o acesso à câmera...</p>
-                </div>
-
-                <div class="progress-bar-container" id="progress-container">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-
-                <button id="start-scan-button" class="mt-8 bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect reveal" style="transition-delay: 450ms;">
-                    Iniciar Escaneamento
-                </button>
-
-                <div id="result-display" class="result-message-test hidden reveal" style="transition-delay: 600ms;">
-                    <!-- O resultado será exibido aqui -->
-                </div>
-                <button id="reset-button" class="mt-4 bg-gray-700 text-white font-bold py-2 px-6 rounded-full uppercase text-sm hidden transform hover:scale-105 transition-all duration-300">
-                    Fazer Novamente
-                </button>
-            </div>
-        </section>
-
-        <!-- Seção Próximos Eventos -->
-        <section id="eventos" class="py-20 md:py-32 bg-black bg-opacity-30">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 section-title-underline reveal">Próximos <span style="color: var(--cor-principal);">Eventos</span></h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    
-                    <!-- CARD DE EVENTO 1 (Ativo) -->
-                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect reveal">
-                        <div class="event-card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a0a/E711F0?text=Savana+Fest';" alt="Pessoas dançando em uma festa com luzes neon coloridas." class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6 flex flex-col">
-                            <h3 class="text-2xl font-bold mb-2">SAVANA FEST - EDIÇÃO NEON</h3>
-                            <p class="text-[var(--cor-principal)] font-semibold mb-4">24 AGOSTO | Expolavras</p>
-                            <p class="text-gray-400 mb-6 h-24 flex-grow">Prepare-se para brilhar na noite mais colorida do ano. Muito funk, eletrônico e surpresas.</p>
-                             <a href="#" class="w-full bg-[var(--cor-principal)] text-white font-bold py-3 px-6 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect">
-                                Comprar Ingresso
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- CARD DE EVENTO 2 (Em Breve) -->
-                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect reveal" style="transition-delay: 150ms;">
-                        <div class="event-card-image-wrapper">
-                           <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a0a/E711F0?text=Calourada';" alt="DJ tocando em uma festa animada com a multidão ao fundo." class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6 flex flex-col">
-                            <h3 class="text-2xl font-bold mb-2">CALOURADA INSANA</h3>
-                            <p class="text-[var(--cor-principal)] font-semibold mb-4">AGUARDEM | República Savana</p>
-                            <p class="text-gray-400 mb-6 h-24 flex-grow">A recepção de calouros que vai parar Lavras. Open bar e as melhores atrações para começar o semestre.</p>
-                            <div class="disabled-ticket-button mt-auto">
-                                <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
-                                    Comprar Ingresso
-                                </button>
-                                <span class="tooltip-text">Vendas em breve!</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- CARD DE EVENTO 3 (Em Breve) -->
-                    <div class="event-card bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 glow-effect reveal" style="transition-delay: 300ms;">
-                        <div class="event-card-image-wrapper">
-                           <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a0a/E711F0?text=Sunset';" alt="Amigos se divertindo em uma festa na piscina durante o pôr do sol." class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6 flex flex-col">
-                            <h3 class="text-2xl font-bold mb-2">SUNSET SAVANA</h3>
-                            <p class="text-[var(--cor-principal)] font-semibold mb-4">NOVEMBRO | Sítio Paraíso</p>
-                            <p class="text-gray-400 mb-6 h-24 flex-grow">O melhor do pagode e eletrônico para curtir o pôr do sol em um lugar incrível com vista de tirar o fôlego.</p>
-                            <div class="disabled-ticket-button mt-auto">
-                                <button disabled class="w-full bg-gray-600 text-gray-400 font-bold py-3 px-6 rounded-full uppercase tracking-wider cursor-not-allowed">
-                                    Comprar Ingresso
-                                </button>
-                                <span class="tooltip-text">Vendas em breve!</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Quem Somos -->
-        <section id="sobre" class="py-20 md:py-32">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 section-title-underline reveal">Quem <span style="color: var(--cor-principal);">Somos</span></h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed reveal">
-                    A Savana nasceu da paixão por criar momentos inesquecíveis. Somos mais do que uma empresa de eventos, somos um movimento que busca redefinir a noite universitária em Lavras. Com festas ousadas, produções impecáveis e uma energia contagiante, nosso objetivo é um só: proporcionar a melhor experiência da sua vida. Bem-vindo à selva de emoções. Bem-vindo à Savana!
-                </p>
-            </div>
-        </section>
-        
-        <!-- Seção Contato -->
-        <section id="contato" class="py-20 md:py-32 bg-black bg-opacity-30">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-16 text-center section-title-underline reveal">Fale <span style="color: var(--cor-principal);">Conosco</span></h2>
-                <div class="max-w-xl mx-auto reveal">
-                    <!-- O formulário agora aponta para o Formspree. Lembre-se de trocar {form_id} pelo seu ID -->
-                    <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Nome</label>
-                            <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Seu nome completo" required>
-                        </div>
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-300 text-sm font-bold mb-2">E-mail</label>
-                            <input type="email" id="email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="seu.email@exemplo.com" required>
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Mensagem</label>
-                            <!-- Adicionado o atributo 'name' para o Formspree funcionar -->
-                            <textarea id="message" name="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--cor-principal)] transition-shadow" placeholder="Escreva sua dúvida, sugestão ou proposta aqui..." required></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" id="submit-button" class="w-full md:w-auto bg-[var(--cor-principal)] text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider transform hover:scale-105 glow-effect transition-all duration-300">
-                                Enviar Mensagem
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+            <p class="text-4xl md:text-5xl font-semibold text-white mt-4">
+                SETEMBRO 2025
+            </p>
+            <p class="text-base md:text-lg text-gray-400 italic mt-8 max-w-lg mx-auto">
+                Venda de ingressos será liberada em breve!
+            </p>
+        </div>
     </main>
-
-    <!-- Rodapé -->
-    <footer class="bg-gray-900 py-12">
-        <div class="container mx-auto px-6 text-center text-gray-400">
-            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana" class="h-16 mx-auto mb-4">
-            <p class="text-lg font-bold">SAVANA EVENTOS</p>
-            <p class="mb-4">&copy; 2024. Todos os direitos reservados.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="https://instagram.com/savanalavras" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold">Instagram</a>
-                <a href="#" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold" aria-label="Siga-nos no TikTok">TikTok</a>
-                <a href="mailto:contato@savanaeventos.com.br" class="transition-colors duration-300 hover:text-[var(--cor-principal)] font-semibold" aria-label="Envie-nos um email">Email</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Success Modal -->
-    <div id="success-modal" class="modal">
-        <div class="modal-content">
-            <h3 class="text-green-400">Sucesso!</h3>
-            <p>Sua mensagem foi enviada com sucesso. Em breve entraremos em contato!</p>
-            <button class="modal-close-button">Fechar</button>
-        </div>
-    </div>
-
-    <!-- Error Modal -->
-    <div id="error-modal" class="modal">
-        <div class="modal-content">
-            <h3 class="text-red-400">Erro!</h3>
-            <p>Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.</p>
-            <button class="modal-close-button">Fechar</button>
-        </div>
-    </div>
 
     <!-- Scripts JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // --- PRE-LOADER ---
-            const loader = document.getElementById('loader');
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
-
-            // --- CABEÇALHO COM FUNDO AO ROLAR ---
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
-                } else {
-                    header.classList.remove('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
-                }
-            });
-            
-            // --- LÓGICA DO MENU MOBILE ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            navLinksMobile.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-
-            // --- PARTÍCULAS ANIMADAS (tsParticles) ---
+            // Inicializa as partículas animadas
             tsParticles.load("tsparticles", {
                 fpsLimit: 60,
                 particles: {
                     number: { value: 40, density: { enable: true, value_area: 800 }},
-                    color: { value: "#E711F0" },
+                    color: { value: "#E711F0" }, // Cor das partículas
                     shape: { type: "circle" },
                     opacity: {
                         value: 0.4,
@@ -636,7 +124,7 @@
                     line_linked: {
                         enable: true,
                         distance: 150,
-                        color: "#E711F0",
+                        color: "#E711F0", // Cor das linhas entre partículas
                         opacity: 0.2,
                         width: 1
                     },
@@ -656,232 +144,6 @@
                 },
                 retina_detect: true,
             });
-
-            // --- ANIMAÇÃO DE REVELAR AO ROLAR ---
-            const revealElements = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            revealElements.forEach(el => {
-                observer.observe(el);
-            });
-
-            // --- LÓGICA DO FORMULÁRIO DE CONTATO E MODAIS ---
-            const contactForm = document.getElementById('contact-form');
-            const submitButton = document.getElementById('submit-button');
-            const successModal = document.getElementById('success-modal');
-            const errorModal = document.getElementById('error-modal');
-            const modalCloseButtons = document.querySelectorAll('.modal-close-button');
-
-            // Function to open a modal
-            function openModal(modalElement) {
-                modalElement.classList.add('open');
-            }
-
-            // Function to close a modal
-            function closeModal(modalElement) {
-                modalElement.classList.remove('open');
-            }
-
-            // Add event listeners to close buttons
-            modalCloseButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    closeModal(successModal);
-                    closeModal(errorModal);
-                });
-            });
-
-            // Close modal when clicking outside of the content
-            successModal.addEventListener('click', (e) => {
-                if (e.target === successModal) {
-                    closeModal(successModal);
-                }
-            });
-            errorModal.addEventListener('click', (e) => {
-                if (e.target === errorModal) {
-                    closeModal(errorModal);
-                }
-            });
-
-
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault(); // Prevent default form submission
-
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
-                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-
-                const formData = new FormData(contactForm);
-                const object = {};
-                formData.forEach((value, key) => {
-                    object[key] = value;
-                });
-                const json = JSON.stringify(object);
-
-                try {
-                    // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree form ID
-                    const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: json
-                    });
-
-                    if (response.ok) {
-                        openModal(successModal);
-                        contactForm.reset(); // Clear form fields
-                    } else {
-                        openModal(errorModal);
-                        const data = await response.json();
-                        console.error('Formspree error:', data);
-                    }
-                } catch (error) {
-                    openModal(errorModal);
-                    console.error('Submission error:', error);
-                } finally {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Enviar Mensagem';
-                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                }
-            });
-
-            // --- LÓGICA DO TESTE DE CHARME SAVANA (Antigo Teste de Feiúra) ---
-            const startScanButton = document.getElementById('start-scan-button');
-            const scannerArea = document.getElementById('scanner-area');
-            const scanLine = document.getElementById('scan-line');
-            const scannerText = document.getElementById('scanner-text');
-            const progressContainer = document.getElementById('progress-container');
-            const progressBar = document.getElementById('progress-bar');
-            const resultDisplay = document.getElementById('result-display');
-            const resetButton = document.getElementById('reset-button');
-            const cameraFeed = document.getElementById('camera-feed');
-            const ticketInfo = document.getElementById('ticket-info');
-            let cameraStream = null; // Para armazenar o stream da câmera
-
-            // Exibe a mensagem de informação do ingresso inicialmente
-            ticketInfo.classList.add('visible');
-
-            startScanButton.addEventListener('click', initScan);
-            resetButton.addEventListener('click', resetTest);
-
-            async function initScan() {
-                // Esconde a mensagem de informação do ingresso
-                ticketInfo.classList.remove('visible');
-                ticketInfo.classList.add('hidden');
-
-                startScanButton.disabled = true;
-                startScanButton.textContent = 'Iniciando Câmera...';
-                startScanButton.classList.add('opacity-50', 'cursor-not-allowed');
-                scannerText.textContent = 'Aguardando acesso à câmera...';
-
-                try {
-                    // Tenta habilitar a câmera
-                    cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
-                    cameraFeed.srcObject = cameraStream;
-                    cameraFeed.style.display = 'block'; // Mostra o vídeo
-                    scannerText.style.display = 'none'; // Esconde o texto de placeholder
-
-                    // Aguarda o vídeo carregar para iniciar o escaneamento
-                    cameraFeed.onloadedmetadata = () => {
-                        startScanButton.textContent = 'Escaneando...';
-                        startScanButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                        startScanButton.disabled = true; // Desabilita durante o scan
-                        
-                        // Inicia a animação de escaneamento e a barra de progresso
-                        scanLine.style.display = 'block';
-                        progressContainer.style.display = 'block';
-                        progressBar.style.width = '0%';
-
-                        let progress = 0;
-                        const interval = setInterval(() => {
-                            progress += 5;
-                            progressBar.style.width = progress + '%';
-
-                            if (progress >= 100) {
-                                clearInterval(interval);
-                                setTimeout(showResult, 500);
-                            }
-                        }, 100);
-                    };
-                } catch (err) {
-                    console.error("Erro ao acessar a câmera: ", err);
-                    scannerText.style.display = 'block'; // Garante que o texto volte a aparecer
-                    scannerText.textContent = 'Erro: Câmera não acessível ou permissão negada. Por favor, permita o acesso à câmera.';
-                    startScanButton.disabled = false;
-                    startScanButton.textContent = 'Tentar Novamente';
-                    startScanButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                }
-            }
-
-            function showResult() {
-                // Esconde os elementos do scan
-                scanLine.style.display = 'none';
-                progressContainer.style.display = 'none';
-                scannerText.style.display = 'none'; // Continua escondido, o vídeo permanece
-                startScanButton.classList.add('hidden'); // Esconde o botão de iniciar
-
-                // Para a câmera
-                if (cameraStream) {
-                    cameraStream.getTracks().forEach(track => track.stop());
-                    cameraFeed.srcObject = null;
-                    cameraFeed.style.display = 'none'; // Esconde o vídeo
-                }
-                
-                // Gera um número aleatório entre 0 e 100
-                const randomPercentage = Math.floor(Math.random() * 101);
-
-                let message = '';
-                let resultClass = '';
-
-                if (randomPercentage >= 75) {
-                    message = `Parabéns! Você tem <strong>${randomPercentage}% de CHARME SAVANA!</strong> 🎉 <br> Você ganhou um ingresso para o nosso próximo evento! Entre em contato conosco para resgatar!`;
-                    resultClass = 'text-[var(--cor-principal)]'; // Cor principal para resultados excelentes
-                } else if (randomPercentage >= 40) {
-                    message = `Você tem <strong>${randomPercentage}% de CHARME SAVANA!</strong> 💅 <br> Você já tem um charme natural para nossas festas!`;
-                    resultClass = 'text-yellow-400'; // Amarelo para resultados bons
-                } else {
-                    message = `Você tem <strong>${randomPercentage}% de CHARME SAVANA!</strong> 😅 <br> Não se preocupe! Nossas festas são para todos. A Savana vai te transformar!`;
-                    resultClass = 'text-red-400'; // Vermelho para resultados "engraçadamente baixos"
-                }
-
-                resultDisplay.innerHTML = message;
-                resultDisplay.className = `result-message-test visible ${resultClass}`;
-                resetButton.classList.remove('hidden'); // Mostra o botão de fazer novamente
-            }
-
-            function resetTest() {
-                // Para a câmera se estiver ativa
-                if (cameraStream) {
-                    cameraStream.getTracks().forEach(track => track.stop());
-                    cameraFeed.srcObject = null;
-                }
-                cameraFeed.style.display = 'none'; // Esconde o vídeo
-                scannerText.style.display = 'block'; // Mostra o texto de placeholder
-                scannerText.textContent = 'Posicione seu rosto aqui para o escaneamento fictício...';
-                scanLine.style.display = 'none';
-                progressContainer.style.display = 'none';
-                progressBar.style.width = '0%';
-                resultDisplay.classList.add('hidden');
-                resultDisplay.classList.remove('visible');
-                resultDisplay.innerHTML = '';
-                resetButton.classList.add('hidden');
-                startScanButton.classList.remove('hidden'); // Mostra o botão de iniciar
-                startScanButton.disabled = false;
-                startScanButton.textContent = 'Iniciar Escaneamento';
-
-                // Exibe a mensagem de informação do ingresso novamente
-                ticketInfo.classList.remove('hidden');
-                ticketInfo.classList.add('visible');
-            }
         });
     </script>
 </body>
