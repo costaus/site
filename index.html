@@ -31,20 +31,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Favicon (mantido para carregamento inicial rápido e compatibilidade) -->
+    <!-- Favicon -->
     <link rel="icon" href="https://iili.io/FCvz5DQ.png" type="image/png">
 
     <style>
         /* Estilos base do corpo */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0a0a0a; /* Fundo escuro */
+            background-color: #000000; /* Fundo preto sólido */
             color: #f0f0f0; /* Cor do texto principal */
             display: flex;
             flex-direction: column; /* Para empilhar logo e texto */
             align-items: center; /* Centraliza horizontalmente */
+            justify-content: center; /* Centraliza verticalmente */
             min-height: 100vh; /* Ocupa a altura total da viewport */
             margin: 0;
+            text-align: center;
         }
 
         /* Cor principal da marca */
@@ -66,16 +68,6 @@
 
         .animated-content {
             animation: fadeInScale 1s ease-out forwards;
-        }
-
-        /* Fundo de partículas animado */
-        #tsparticles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
         }
 
         /* Estilo para o temporizador */
@@ -120,13 +112,10 @@
 </head>
 <body>
 
-    <!-- Fundo de Partículas -->
-    <div id="tsparticles"></div>
-
     <main class="text-center px-4 py-8">
         <div class="animated-content flex flex-col items-center">
-            <!-- LOGO DA SAVANA - Ajustado mt para posicionamento mais no topo -->
-            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-32 lg:h-40 mx-auto mt-8 mb-8">
+            <!-- LOGO DA SAVANA -->
+            <img src="https://iili.io/FCvz5DQ.png" alt="Logo Savana Eventos" class="h-24 md:h-32 lg:h-40 mx-auto mb-8">
             
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase mt-4" style="color: var(--cor-principal); text-shadow: 0px 0px 20px rgba(231, 17, 240, 0.6);">
                 EM BREVE
@@ -135,7 +124,7 @@
                 SETEMBRO 2025
             </p>
 
-            <!-- Texto acima do temporizador - Estilo ajustado para ser menos destacado -->
+            <!-- Texto acima do temporizador -->
             <p id="countdown-message" class="text-base md:text-lg text-gray-400 font-normal mt-8 mb-4">
                 Prepare-se! As vendas começam em:
             </p>
@@ -162,49 +151,9 @@
             
         </div>
     </main>
-
-    <!-- Scripts JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Inicializa as partículas animadas
-            tsParticles.load("tsparticles", {
-                fpsLimit: 60,
-                particles: {
-                    number: { value: 40, density: { enable: true, value_area: 800 }},
-                    color: { value: "#E711F0" }, // Cor das partículas
-                    shape: { type: "circle" },
-                    opacity: {
-                        value: 0.4,
-                        random: true,
-                        anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false }
-                    },
-                    size: { value: 3, random: true },
-                    line_linked: {
-                        enable: true,
-                        distance: 150,
-                        color: "#E711F0", // Cor das linhas entre partículas
-                        opacity: 0.2,
-                        width: 1
-                    },
-                    move: {
-                        enable: true,
-                        speed: 1,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        out_mode: "out",
-                    }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: { onhover: { enable: true, mode: "grab" }, resize: true },
-                    modes: { grab: { distance: 140, line_opacity: 0.5 } }
-                },
-                retina_detect: true,
-            });
-
             // Lógica do Temporizador
             const countdownDate = new Date("August 1, 2025 00:00:00").getTime(); // 1º de Agosto de 2025
 
@@ -218,18 +167,27 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Atualiza os elementos HTML
-                document.getElementById("days").innerHTML = String(days).padStart(2, '0');
-                document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
-                document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
-                document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+                // Atualiza os elementos HTML, garantindo que o elemento exista
+                const daysEl = document.getElementById("days");
+                if (daysEl) daysEl.innerHTML = String(days).padStart(2, '0');
+
+                const hoursEl = document.getElementById("hours");
+                if (hoursEl) hoursEl.innerHTML = String(hours).padStart(2, '0');
+
+                const minutesEl = document.getElementById("minutes");
+                if (minutesEl) minutesEl.innerHTML = String(minutes).padStart(2, '0');
+
+                const secondsEl = document.getElementById("seconds");
+                if (secondsEl) secondsEl.innerHTML = String(seconds).padStart(2, '0');
 
                 // Se a contagem regressiva terminou
                 if (distance < 0) {
                     clearInterval(countdownInterval);
-                    document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-white mt-4'>VENDAS LIBERADAS!</p>";
-                    // Esconde o texto "Prepare-se!" quando o temporizador termina
-                    document.getElementById("countdown-message").style.display = 'none';
+                    const countdownEl = document.getElementById("countdown");
+                    if(countdownEl) countdownEl.innerHTML = "<p class='text-2xl font-bold text-white mt-4'>VENDAS LIBERADAS!</p>";
+                    
+                    const messageEl = document.getElementById("countdown-message");
+                    if(messageEl) messageEl.style.display = 'none';
                 }
             };
 
@@ -238,18 +196,6 @@
 
             // Chama a função uma vez imediatamente para evitar atraso no primeiro display
             updateCountdown();
-
-            // Adiciona o favicon via JavaScript
-            const setFavicon = (url) => {
-                let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-                link.type = 'image/png';
-                link.rel = 'shortcut icon';
-                link.href = url;
-                document.getElementsByTagName('head')[0].appendChild(link);
-            };
-
-            // URL da sua logo principal
-            setFavicon('https://iili.io/FCvz5DQ.png');
         });
     </script>
 </body>
